@@ -1,0 +1,55 @@
+# D&D Compendium
+
+A D&D campaign compendium built with MkDocs and deployed to GitHub Pages.
+
+## Overview
+
+This repository contains D&D campaign notes stored in an Obsidian vault (`dnd-vault/`) that are automatically published to GitHub Pages when tagged with `#publish-me`.
+
+## Deployment
+
+The site is automatically built and deployed to GitHub Pages via GitHub Actions when changes are pushed to the `main` branch.
+
+### How it works
+
+1. **Filter**: Only markdown files tagged with `#publish-me` in the `dnd-vault/` directory are published
+2. **Exclude**: Certain folders (Journal, TODO, Feelings, Private, Templates) are never published
+3. **Process**: Obsidian-specific syntax (like `[[wikilinks]]` and dataview queries) is converted to standard markdown
+4. **Build**: MkDocs builds a static site with Material theme
+5. **Deploy**: GitHub Actions deploys the site to GitHub Pages
+
+### Configuration
+
+- **MkDocs Config**: `mkdocs.yml` - Material theme with advanced features
+- **Workflow**: `.github/workflows/deploy.yml` - Automated build and deployment
+- **Scripts**: `.scripts/preprocess_dataviews.py` - Converts Obsidian dataview queries
+
+### GitHub Pages Setup
+
+To enable deployment, ensure GitHub Pages is configured in your repository settings:
+
+1. Go to **Settings** > **Pages**
+2. Under **Source**, select **GitHub Actions**
+3. The workflow will automatically deploy on the next push to `main`
+
+## Local Development
+
+To build and preview the site locally:
+
+```bash
+# Install dependencies
+pip install mkdocs mkdocs-material mkdocs-awesome-pages-plugin pymdown-extensions mkdocs-simple-hooks
+
+# Prepare content (manually copy and process files as the workflow does)
+mkdir -p .site_content
+# ... copy your published files ...
+
+# Build and serve locally
+mkdocs serve
+```
+
+Visit http://127.0.0.1:8000 to preview the site.
+
+## Site URL
+
+Published at: https://samsturtevant.github.io/dnd-compendium
