@@ -64,6 +64,12 @@ jobs:
               fi
             done
 
+            # Also skip README.md at the root level
+            if [[ "$file" == "./README.md" ]]; then
+              echo "Skipping README.md"
+              SKIP=1
+            fi
+
             if [ $SKIP -eq 0 ]; then
               cp --parents "$file" .site_content_temp/
             fi
