@@ -44,10 +44,17 @@ jobs:
         run: |
           mkdir -p .site_content_temp
           # Define excluded folders that should never be published
-          EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates")
+          EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates" ".git" ".github" ".scripts" "site" ".site_content")
 
           # Find all markdown files with #wiki and copy to temp directory
-          find dnd-vault/ -type f -name "*.md" -exec grep -l "#wiki" {} \; | while IFS= read -r file; do
+          # Exclude hidden directories and build directories
+          find . -maxdepth 5 -type f -name "*.md" \
+            -not -path "./.git/*" \
+            -not -path "./.github/*" \
+            -not -path "./.scripts/*" \
+            -not -path "./site/*" \
+            -not -path "./.site_content*/*" \
+            -exec grep -l "#wiki" {} \; | while IFS= read -r file; do
             SKIP=0
             for folder in "${EXCLUSION[@]}"; do
               if [[ "$file" == *"/$folder/"* ]]; then
@@ -63,13 +70,13 @@ jobs:
           done
 
           # Copy Assets directory if it exists
-          if [ -d dnd-vault/Assets ]; then
-            cp -r dnd-vault/Assets .site_content_temp/dnd-vault/
+          if [ -d Assets ]; then
+            cp -r Assets .site_content_temp/
             echo "Copied Assets directory"
           fi
 
           # Reorganize files with URL-friendly structure
-          python .scripts/reorganize_files.py .site_content_temp/dnd-vault .site_content .site_mapping.json
+          python .scripts/reorganize_files.py .site_content_temp .site_content .site_mapping.json
 
           # Copy index and overrides if they exist
           if [ -f docs/index.md ]; then
