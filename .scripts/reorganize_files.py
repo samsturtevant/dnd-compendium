@@ -126,13 +126,20 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             filename_without_ext = os.path.splitext(filename)[0]
             parent_dir_name = os.path.basename(os.path.dirname(original_path))
             
-            if filename_without_ext == parent_dir_name:
+            if filename_without_ext == parent_dir_name and filename != 'index.md':
                 # This file should become the index for this section
                 new_dir = os.path.dirname(new_path)
-                new_path = os.path.join(new_dir, 'index.md')
-                # Update the relative path too
-                new_relative_path = os.path.relpath(new_path, dest_dir)
-                print(f"  -> Converting to section index: {filename}")
+                new_index_path = os.path.join(new_dir, 'index.md')
+                
+                # Only convert if there isn't already an index.md in the source
+                source_index = os.path.join(os.path.dirname(original_path), 'index.md')
+                if not os.path.exists(source_index):
+                    new_path = new_index_path
+                    # Update the relative path too
+                    new_relative_path = os.path.relpath(new_path, dest_dir)
+                    print(f"  -> Converting to section index: {filename}")
+                else:
+                    print(f"  -> Skipping conversion (index.md already exists): {filename}")
             
             # Create directory if needed
             new_dir = os.path.dirname(new_path)
