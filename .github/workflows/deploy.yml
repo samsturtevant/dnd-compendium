@@ -39,14 +39,14 @@ jobs:
             pymdown-extensions>=10.0 \
             mkdocs-simple-hooks
 
-      # Step 4: Filter files and copy to temporary directory
-      - name: Filter and Copy Public Notes
+      # Step 4: Filter and reorganize files
+      - name: Filter and Reorganize Public Notes
         run: |
-          mkdir -p .site_content
+          mkdir -p .site_content_temp
           # Define excluded folders that should never be published
           EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates")
 
-          # Find all markdown files with #wiki
+          # Find all markdown files with #wiki and copy to temp directory
           find dnd-vault/ -type f -name "*.md" -exec grep -l "#wiki" {} \; | while IFS= read -r file; do
             SKIP=0
             for folder in "${EXCLUSION[@]}"; do
@@ -58,9 +58,18 @@ jobs:
             done
 
             if [ $SKIP -eq 0 ]; then
-              cp --parents "$file" .site_content/
+              cp --parents "$file" .site_content_temp/
             fi
           done
+
+          # Copy Assets directory if it exists
+          if [ -d dnd-vault/Assets ]; then
+            cp -r dnd-vault/Assets .site_content_temp/dnd-vault/
+            echo "Copied Assets directory"
+          fi
+
+          # Reorganize files with URL-friendly structure
+          python .scripts/reorganize_files.py .site_content_temp/dnd-vault .site_content .site_mapping.json
 
           # Copy index and overrides if they exist
           if [ -f docs/index.md ]; then
@@ -83,13 +92,13 @@ jobs:
             echo "No .overrides directory found"
           fi
 
-          echo "Files copied successfully to .site_content"
+          echo "Files reorganized successfully to .site_content"
 
       # Step 5: Preprocess Obsidian Features
       - name: Preprocess Obsidian Features
         run: |
           python .scripts/preprocess_dataviews.py
-          find .site_content/ -type f -name "*.md" -exec sed -i 's/\[\[\(.*\)\]\]/[\1](\1.md)/g' {} \;
+          python .scripts/convert_wikilinks.py .site_content .site_mapping.json
           echo "Preprocessed Obsidian features in markdown files."
 
       # Step 6: Build MkDocs Site
