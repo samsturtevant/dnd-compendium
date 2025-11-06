@@ -47,10 +47,14 @@
             "id": "122191869687647d",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Groups/Enchanter's Guild/Enchanter's Guild.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Enchanter's Guild"
             }
           }
         ],
@@ -199,11 +203,13 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "github-sync:Sync with Remote": false
     }
   },
   "active": "122191869687647d",
   "lastOpenFiles": [
+    "Groups/Enchanter's Guild/Enchanter's Guild.md",
     "Locations/Brindlewood/Peapod Public House.md",
     "Locations/Brindlewood/Brindlewood.md",
     "Locations/Brindlewood",
@@ -212,7 +218,6 @@
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
     "Groups/Hollow Root Covenant/Kept.md",
     "Groups/Hollow Root Covenant/Buried Star.md",
-    "Groups/Enchanter's Guild/Enchanter's Guild.md",
     "Groups/Underbelly Mercantile",
     "Groups/The Party.md",
     "Groups/The Bogwatchers",
