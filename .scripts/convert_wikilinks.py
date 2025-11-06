@@ -26,15 +26,12 @@ def calculate_relative_path(from_file, to_file):
         to_file: Target file path (e.g., 'groups/hollow-root-covenant/hollow-root-covenant.md')
     
     Returns:
-        Relative path (e.g., '../../../groups/hollow-root-covenant/hollow-root-covenant/')
+        Relative path with .md extension (e.g., '../../groups/hollow-root-covenant/hollow-root-covenant.md')
+        This allows MkDocs to properly process the links and convert them to correct HTML paths.
     """
     if not from_file:
         # If no source file is provided, use root-relative path with leading /
-        # This maintains backward compatibility but won't work for subdirectory deployments
-        if to_file.endswith('.md'):
-            to_file = to_file[:-3]
-        if not to_file.endswith('/'):
-            to_file = to_file + '/'
+        # Keep .md extension so MkDocs can process the link
         if not to_file.startswith('/'):
             to_file = '/' + to_file
         return to_file
@@ -45,10 +42,6 @@ def calculate_relative_path(from_file, to_file):
     # Split paths into components
     from_parts = from_dir.split('/') if from_dir else []
     to_parts = to_file.split('/')
-    
-    # Remove .md extension from target
-    if to_parts and to_parts[-1].endswith('.md'):
-        to_parts[-1] = to_parts[-1][:-3]
     
     # Find common prefix
     common_len = 0
@@ -66,10 +59,8 @@ def calculate_relative_path(from_file, to_file):
     # Add target path components after common prefix
     rel_parts.extend(to_parts[common_len:])
     
-    # Join and add trailing slash
+    # Join to create the relative path with .md extension preserved
     rel_path = '/'.join(rel_parts)
-    if not rel_path.endswith('/'):
-        rel_path = rel_path + '/'
     
     return rel_path
 
@@ -85,12 +76,13 @@ def convert_wikilinks(content, mapping, source_file=None):
     Convert wikilinks to markdown links using the mapping.
     
     Handles:
-    - [[Page Name]] -> [Page Name](../../path/to/page-name/)
-    - [[Page Name|Display Text]] -> [Display Text](../../path/to/page-name/)
-    - [[Folder/Page Name]] -> [Page Name](../../folder/page-name/)
+    - [[Page Name]] -> [Page Name](../../path/to/page-name.md)
+    - [[Page Name|Display Text]] -> [Display Text](../../path/to/page-name.md)
+    - [[Folder/Page Name]] -> [Page Name](../../folder/page-name.md)
     - [[Image.png]] -> ![Image](../../assets/image.png) (for images)
     
-    Links are relative to the source file location.
+    Links are relative to the source file location and include .md extension
+    so MkDocs can properly process them.
     
     Args:
         content: The markdown content to process
@@ -143,12 +135,12 @@ def convert_wikilinks(content, mapping, source_file=None):
             # If not found in mapping, create a simple slugified version
             slug = slugify(link_target)
             if source_file:
-                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '{slug}/'", file=sys.stderr)
+                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '{slug}.md'", file=sys.stderr)
                 # Try to create a reasonable relative path
                 new_path = calculate_relative_path(source_file, f'{slug}.md')
             else:
-                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}/'", file=sys.stderr)
-                new_path = f'/{slug}/'
+                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}.md'", file=sys.stderr)
+                new_path = f'/{slug}.md'
             return f'[{display_text}]({new_path})'
     
     # Replace wikilinks
