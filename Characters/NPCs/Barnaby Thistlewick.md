@@ -1,3 +1,3 @@
-Aspiring member of the [[Enchanter's Guild]]
+Aspiring member of the [[Enchanters' Guild]]
 
 #wiki
