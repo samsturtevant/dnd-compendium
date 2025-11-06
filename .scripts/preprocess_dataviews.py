@@ -11,8 +11,14 @@ def process_dataview(file_path):
     with open(file_path, "r") as file:
         content = file.read()
 
-    # Example: Replace `dataview` blocks with a placeholder (customize as needed)
+    # Replace `dataview` blocks with a placeholder (customize as needed)
     content = re.sub(r"```dataview([\s\S]*?)```", "Dataview Query: \\1", content)
+    
+    # Remove #wiki tags (they're used for filtering but shouldn't be displayed)
+    # Match #wiki on its own line with optional whitespace
+    content = re.sub(r"^\s*#wiki\s*$", "", content, flags=re.MULTILINE)
+    # Also remove inline #wiki tags at the end of paragraphs
+    content = re.sub(r"\s+#wiki\s*$", "", content, flags=re.MULTILINE)
 
     with open(file_path, "w") as file:
         file.write(content)
