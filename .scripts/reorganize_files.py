@@ -85,16 +85,37 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
     Also creates a mapping file for wikilink conversion.
     """
     mapping = {}
+    pages_count = 0
     
     # Walk through source directory
     for root, dirs, files in os.walk(source_dir):
         for filename in files:
-            if not filename.endswith('.md'):
-                continue
-            
             # Get original path relative to working directory
             original_path = os.path.join(root, filename)
             relative_original = os.path.relpath(original_path, '.')
+            
+            # Handle .pages files separately - copy them to corresponding dirs
+            if filename == '.pages':
+                # Get new path for the directory
+                dir_path = os.path.dirname(relative_original)
+                new_dir_path = get_new_path(dir_path + '/dummy.md')  # Get directory path
+                new_dir = os.path.dirname(os.path.join(dest_dir, new_dir_path))
+                os.makedirs(new_dir, exist_ok=True)
+                
+                # Copy .pages file as-is
+                new_pages_path = os.path.join(new_dir, '.pages')
+                with open(original_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                with open(new_pages_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                
+                pages_count += 1
+                print(f"Copied .pages: {relative_original} -> {os.path.relpath(new_pages_path, dest_dir)}")
+                continue
+            
+            # Only process markdown files for mapping
+            if not filename.endswith('.md'):
+                continue
             
             # Get new path
             new_relative_path = get_new_path(relative_original)
@@ -123,6 +144,8 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
     
     print(f"\nMapping saved to {mapping_file}")
     print(f"Total files reorganized: {len(mapping)}")
+    if pages_count > 0:
+        print(f"Total .pages files copied: {pages_count}")
 
 
 def copy_assets(source_dir, dest_dir, base_dir='.site_content_temp'):
