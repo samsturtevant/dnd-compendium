@@ -1,5 +1,5 @@
 The Buried Star is an esoteric artifact worshipped by the [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]. It is rumored to function via Wish magic, where those who commune with it are somehow psychically connected to its intrinsic powers. It is believed that those favored by the Buried Star have their desires made manifest.
 
-When the Buried Star grants someone their [Wish](Kept.md#Wish), 
+When the Buried Star grants someone their Wish, they are referred to as [[Kept]].
 
 #wiki

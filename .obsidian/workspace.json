@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+                "file": "Groups/Hollow Root Covenant/Buried Star.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Hollow Root Covenant"
+              "title": "Buried Star"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+                "file": "Groups/Hollow Root Covenant/Buried Star.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Hollow Root Covenant"
+              "title": "Backlinks for Buried Star"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+                "file": "Groups/Hollow Root Covenant/Buried Star.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Hollow Root Covenant"
+              "title": "Outgoing links from Buried Star"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+                "file": "Groups/Hollow Root Covenant/Buried Star.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Hollow Root Covenant"
+              "title": "Outline of Buried Star"
             }
           }
         ]
@@ -172,9 +172,18 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
+    "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+    "Groups/Hollow Root Covenant/Kept.md",
+    "Groups/The Bogwatchers/Bogwatchers' Sanctum.md",
+    "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
+    "Groups/The Party.md",
+    "Locations/Brindlewood/Brindlewood.md",
+    "Locations/Brindlewood/Peapod Public House.md",
+    "Locations/Blighted Bog.md",
+    "Locations/Hollow Root Covenant.md",
+    "Locations/Underground Chamber.md",
     "index.md",
     "README.md",
-    "Groups/The Party.md",
     "Assets/Mirecradle Entry image.png",
     "Assets",
     "Templates",
@@ -192,23 +201,14 @@
     "Characters/NPCs/Maera Broadkettle.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Characters/NPCs/Buster.md",
-    "Characters/NPCs/Barnaby Thistlewick.md",
     "Characters/PCs",
     "Characters/NPCs",
     "Characters",
-    "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
-    "Groups/The Bogwatchers/Bogwatchers' Sanctum.md",
-    "Groups/Hollow Root Covenant/Kept.md",
-    "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
-    "Groups/Hollow Root Covenant/Buried Star.md",
-    "Groups/Enchanter's Guild/Enchanter's Guild.md",
     "Groups/Underbelly Mercantile",
     "Groups/The Bogwatchers",
     "Groups/Hollow Root Covenant",
     "Groups/Enchanter's Guild",
     "Groups",
-    "Locations/Brindlewood/Peapod Public House.md",
-    "Locations/Brindlewood/Brindlewood.md",
     "dnd-vault/Assets/Mirecradle Entry image.png"
   ]
 }
