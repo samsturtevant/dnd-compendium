@@ -1,6 +1,8 @@
 # MkDocs build output
 site/
 .site_content/
+.site_content_temp/
+.site_mapping.json
 
 # Python
 __pycache__/
