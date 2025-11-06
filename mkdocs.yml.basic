@@ -1,0 +1,5 @@
+site_name: D&D Compendium
+site_url: https://yourusername.github.io/dnd-compendium
+site_author: Sam Sturtevant
+site_description: D&D Compendium
+docs_dir: .site_content
