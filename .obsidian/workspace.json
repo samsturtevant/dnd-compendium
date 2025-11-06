@@ -1,78 +1,41 @@
 {
   "main": {
-    "id": "17abf5ea08947fdd",
+    "id": "e451f3f0f614fe6f",
     "type": "split",
     "children": [
       {
-        "id": "66c64575cd25fbf0",
+        "id": "ddb104ee03ea3901",
         "type": "tabs",
         "children": [
           {
-            "id": "c277eedebb2fdeee",
+            "id": "70c3fcae23163223",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Locations/Mirecradle Entry.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mirecradle Entry"
-            }
-          },
-          {
-            "id": "60993b7dc981d81a",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Assets/Mirecradle Entry image.png"
-              },
-              "icon": "lucide-image",
-              "title": "Mirecradle Entry image"
-            }
-          },
-          {
-            "id": "cf5bca45b09a9abc",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
-            "id": "122191869687647d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Groups/Enchanter's Guild/Enchanter's Guild.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Enchanter's Guild"
+              "title": "README"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "5425a61fb7fa90f5",
+    "id": "00dcc4ba290ff78b",
     "type": "split",
     "children": [
       {
-        "id": "202deb468918f1df",
+        "id": "be00592607372bbd",
         "type": "tabs",
         "children": [
           {
-            "id": "f8d3d2cda2a14c9c",
+            "id": "0168d9fbc6afcc71",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -85,7 +48,7 @@
             }
           },
           {
-            "id": "db75ec65bae21a14",
+            "id": "9710ddba167962dd",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -102,7 +65,7 @@
             }
           },
           {
-            "id": "56e8711331637a7c",
+            "id": "ea86f30f745765a9",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -118,20 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "c86d86cada36a48a",
+    "id": "af65fb21b047519e",
     "type": "split",
     "children": [
       {
-        "id": "c0c84b3adab9d3d9",
+        "id": "9f3a29973ec5837c",
         "type": "tabs",
         "children": [
           {
-            "id": "09ab68ae3bfae1d5",
+            "id": "b43af58c2fdb2354",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Locations/Mirecradle Entry.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -141,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Mirecradle Entry"
+              "title": "Backlinks for README"
             }
           },
           {
-            "id": "911ba0c0792526c7",
+            "id": "dcb5866d122514db",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Locations/Mirecradle Entry.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Mirecradle Entry"
+              "title": "Outgoing links from README"
             }
           },
           {
-            "id": "2d5fe5dcddc1e8f3",
+            "id": "59e4c0decaf2dee3",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -174,18 +137,18 @@
             }
           },
           {
-            "id": "4ca9f2a1f4ce0241",
+            "id": "b8dfc56408f64ba3",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Locations/Mirecradle Entry.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Mirecradle Entry"
+              "title": "Outline of README"
             }
           }
         ]
@@ -197,33 +160,21 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "github-sync:Sync with Remote": false
+      "bases:Create new base": false
     }
   },
-  "active": "122191869687647d",
+  "active": "70c3fcae23163223",
   "lastOpenFiles": [
-    "Groups/Enchanter's Guild/Enchanter's Guild.md",
-    "Locations/Brindlewood/Peapod Public House.md",
-    "Locations/Brindlewood/Brindlewood.md",
-    "Locations/Brindlewood",
-    "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
-    "Groups/The Bogwatchers/Bogwatchers' Sanctum.md",
-    "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
-    "Groups/Hollow Root Covenant/Kept.md",
-    "Groups/Hollow Root Covenant/Buried Star.md",
-    "Groups/Underbelly Mercantile",
-    "Groups/The Party.md",
-    "Groups/The Bogwatchers",
-    "Groups/Hollow Root Covenant",
-    "Groups/Enchanter's Guild",
-    "Groups",
+    "index.md",
+    "Assets/Mirecradle Entry image.png",
+    "Assets",
+    "Templates",
     "Characters/PCs/Wren.md",
     "Characters/PCs/Tobias Goreguts.md",
     "Characters/PCs/Timothy Tuttle.md",
@@ -231,7 +182,6 @@
     "Characters/PCs/Lucian Lovelyre.md",
     "Characters/PCs/Korran Mossborn.md",
     "Characters/PCs/Eva Silverstream.md",
-    "Characters/PCs",
     "Characters/NPCs/Twigbeard.md",
     "Characters/NPCs/Tavin.md",
     "Characters/NPCs/Sister Lethra.md",
@@ -240,11 +190,24 @@
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Characters/NPCs/Buster.md",
     "Characters/NPCs/Barnaby Thistlewick.md",
+    "Characters/PCs",
     "Characters/NPCs",
-    "Sessions/Session 4.md",
-    "Locations/Peapod Public House.md",
-    "Factions/Hollow Root Covenant",
-    "Factions",
-    "Assets/Mirecradle Entry image.png"
+    "Characters",
+    "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
+    "Groups/The Bogwatchers/Bogwatchers' Sanctum.md",
+    "Groups/Hollow Root Covenant/Kept.md",
+    "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
+    "Groups/Hollow Root Covenant/Buried Star.md",
+    "Groups/Enchanter's Guild/Enchanter's Guild.md",
+    "Groups/Underbelly Mercantile",
+    "Groups/The Party.md",
+    "Groups/The Bogwatchers",
+    "Groups/Hollow Root Covenant",
+    "Groups/Enchanter's Guild",
+    "Groups",
+    "Locations/Brindlewood/Peapod Public House.md",
+    "Locations/Brindlewood/Brindlewood.md",
+    "Locations/Underground Chamber.md",
+    "dnd-vault/Assets/Mirecradle Entry image.png"
   ]
 }
