@@ -7,15 +7,15 @@ This repository is a D&D campaign compendium that converts Obsidian markdown not
 ## Architecture
 
 ### Workflow
-1. **Content Creation**: D&D notes are written in Obsidian format in the `dnd-vault/` directory
-2. **Filtering**: Only files tagged with `#publish-me` are published
+1. **Content Creation**: D&D notes are written in Obsidian format at the repository root
+2. **Filtering**: Only files tagged with `#wiki` are published
 3. **Exclusions**: Certain folders (Journal, TODO, Feelings, Private, Templates) are never published
 4. **Preprocessing**: Obsidian-specific syntax is converted to standard markdown
 5. **Building**: MkDocs builds the static site
 6. **Deployment**: GitHub Actions deploys to GitHub Pages
 
 ### Key Components
-- **Content**: `dnd-vault/` - Obsidian vault with D&D campaign notes
+- **Content**: Repository root - Markdown files with D&D campaign notes
 - **Build Config**: `mkdocs.yml` - MkDocs configuration with Material theme
 - **Preprocessing Script**: `.scripts/preprocess_dataviews.py` - Converts Obsidian dataview queries
 - **Deployment**: `.github/workflows/deploy.yml` - Automated build and deploy workflow
@@ -23,14 +23,13 @@ This repository is a D&D campaign compendium that converts Obsidian markdown not
 ## File Structure and Conventions
 
 ### Content Organization
-- `dnd-vault/Assets/` - Images and other assets
-- `dnd-vault/Characters/` - Character notes
-- `dnd-vault/Factions/` - Faction descriptions
-- `dnd-vault/Locations/` - Location details
-- `dnd-vault/Sessions/` - Session notes
+- `Assets/` - Images and other assets
+- `Characters/` - Character notes
+- `Groups/` - Faction descriptions
+- `Locations/` - Location details
 
 ### Markdown Conventions
-- Use `#publish-me` tag to mark files for publication
+- Use `#wiki` tag to mark files for publication
 - Use Obsidian wikilink syntax `[[Page Name]]` for internal links (automatically converted)
 - Dataview queries in ` ```dataview ``` ` blocks are converted to placeholders
 - Follow standard markdown for headers, lists, and formatting
@@ -46,8 +45,8 @@ Never publish content from these folders:
 ## Development Guidelines
 
 ### Adding or Modifying Content
-- Place markdown files in appropriate subdirectories of `dnd-vault/`
-- Tag files with `#publish-me` to include them in the published site
+- Place markdown files in appropriate subdirectories at the repository root
+- Tag files with `#wiki` to include them in the published site
 - Use Obsidian wikilinks `[[Page]]` for cross-references
 - Test locally before pushing to main
 
@@ -78,7 +77,7 @@ mkdocs serve
 
 ### Before Committing
 1. Ensure markdown files are properly formatted
-2. Verify `#publish-me` tags are present on files that should be published
+2. Verify `#wiki` tags are present on files that should be published
 3. Check that wikilinks use correct page names
 4. Test locally with `mkdocs serve` if making configuration changes
 
@@ -90,8 +89,8 @@ mkdocs serve
 ## Common Tasks
 
 ### Publishing a New Note
-1. Create markdown file in appropriate `dnd-vault/` subdirectory
-2. Add `#publish-me` tag at the top or in YAML frontmatter
+1. Create markdown file in appropriate subdirectory at the repository root
+2. Add `#wiki` tag at the top or in YAML frontmatter
 3. Use wikilinks for references to other notes
 4. Commit and push to `main`
 
@@ -124,7 +123,7 @@ mkdocs serve
 ## Troubleshooting
 
 ### Common Issues
-- **Missing pages**: Check for `#publish-me` tag and verify file isn't in excluded folder
+- **Missing pages**: Check for `#wiki` tag and verify file isn't in excluded folder
 - **Broken links**: Ensure wikilink targets exist and are published
 - **Build failures**: Check GitHub Actions logs for specific errors
 - **Styling issues**: Review `mkdocs.yml` theme configuration
