@@ -4,7 +4,7 @@ A D&D campaign compendium built with MkDocs and deployed to GitHub Pages.
 
 ## Overview
 
-This repository contains D&D campaign notes stored in an Obsidian vault (`dnd-vault/`) that are automatically published to GitHub Pages when tagged with `#publish-me`.
+This repository contains D&D campaign notes stored in an Obsidian vault (`dnd-vault/`) that are automatically published to GitHub Pages when tagged with `#wiki`.
 
 ## Deployment
 
@@ -12,7 +12,7 @@ The site is automatically built and deployed to GitHub Pages via GitHub Actions 
 
 ### How it works
 
-1. **Filter**: Only markdown files tagged with `#publish-me` in the `dnd-vault/` directory are published
+1. **Filter**: Only markdown files tagged with `#wiki` in the `dnd-vault/` directory are published
 2. **Exclude**: Certain folders (Journal, TODO, Feelings, Private, Templates) are never published
 3. **Process**: Obsidian-specific syntax (like `[[wikilinks]]` and dataview queries) is converted to standard markdown
 4. **Build**: MkDocs builds a static site with Material theme

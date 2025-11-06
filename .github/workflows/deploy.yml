@@ -46,8 +46,8 @@ jobs:
           # Define excluded folders that should never be published
           EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates")
 
-          # Find all markdown files with #publish-me
-          find dnd-vault/ -type f -name "*.md" -exec grep -l "#publish-me" {} \; | while IFS= read -r file; do
+          # Find all markdown files with #wiki
+          find dnd-vault/ -type f -name "*.md" -exec grep -l "#wiki" {} \; | while IFS= read -r file; do
             SKIP=0
             for folder in "${EXCLUSION[@]}"; do
               if [[ "$file" == *"/$folder/"* ]]; then

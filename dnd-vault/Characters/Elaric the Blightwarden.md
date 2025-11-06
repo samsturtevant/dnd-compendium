@@ -6,3 +6,5 @@ Eyes: pale gold, clouded with cataract-like mist, yet piercing.
 Voice: soft, deliberate
 Clothing: Tattered noble robes fused with creeping rot—moss, bone clasps, leech silk.
 Presence: Calm, patient, and inevitable
+
+#wiki
