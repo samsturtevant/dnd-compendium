@@ -4,3 +4,4 @@
 ## Images
 ![[Mirecradle Entry image.png]]
 
+#wiki
