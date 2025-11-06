@@ -17,23 +17,85 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from reorganize_files import slugify
 
 
+def calculate_relative_path(from_file, to_file):
+    """
+    Calculate relative path from one file to another.
+    
+    Args:
+        from_file: Source file path (e.g., 'characters/npcs/elaric-the-blightwarden.md')
+        to_file: Target file path (e.g., 'groups/hollow-root-covenant/hollow-root-covenant.md')
+    
+    Returns:
+        Relative path (e.g., '../../../groups/hollow-root-covenant/hollow-root-covenant/')
+    """
+    if not from_file:
+        # If no source file is provided, use root-relative path with leading /
+        # This maintains backward compatibility but won't work for subdirectory deployments
+        if to_file.endswith('.md'):
+            to_file = to_file[:-3]
+        if not to_file.endswith('/'):
+            to_file = to_file + '/'
+        if not to_file.startswith('/'):
+            to_file = '/' + to_file
+        return to_file
+    
+    # Get directory of source file
+    from_dir = os.path.dirname(from_file)
+    
+    # Split paths into components
+    from_parts = from_dir.split('/') if from_dir else []
+    to_parts = to_file.split('/')
+    
+    # Remove .md extension from target
+    if to_parts and to_parts[-1].endswith('.md'):
+        to_parts[-1] = to_parts[-1][:-3]
+    
+    # Find common prefix
+    common_len = 0
+    for i in range(min(len(from_parts), len(to_parts) - 1)):
+        if from_parts[i] == to_parts[i]:
+            common_len += 1
+        else:
+            break
+    
+    # Build relative path
+    # Go up from source directory
+    up_levels = len(from_parts) - common_len
+    rel_parts = ['..'] * up_levels
+    
+    # Add target path components after common prefix
+    rel_parts.extend(to_parts[common_len:])
+    
+    # Join and add trailing slash
+    rel_path = '/'.join(rel_parts)
+    if not rel_path.endswith('/'):
+        rel_path = rel_path + '/'
+    
+    return rel_path
+
+
 def load_mapping(mapping_file):
     """Load the filename mapping."""
     with open(mapping_file, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
-def convert_wikilinks(content, mapping):
+def convert_wikilinks(content, mapping, source_file=None):
     """
     Convert wikilinks to markdown links using the mapping.
     
     Handles:
-    - [[Page Name]] -> [Page Name](/path/to/page-name.md)
-    - [[Page Name|Display Text]] -> [Display Text](/path/to/page-name.md)
-    - [[Folder/Page Name]] -> [Page Name](/folder/page-name.md)
-    - [[Image.png]] -> ![Image](/assets/image.png) (for images)
+    - [[Page Name]] -> [Page Name](../../path/to/page-name/)
+    - [[Page Name|Display Text]] -> [Display Text](../../path/to/page-name/)
+    - [[Folder/Page Name]] -> [Page Name](../../folder/page-name/)
+    - [[Image.png]] -> ![Image](../../assets/image.png) (for images)
     
-    Links are absolute from the docs root.
+    Links are relative to the source file location.
+    
+    Args:
+        content: The markdown content to process
+        mapping: Dictionary mapping page names to their paths
+        source_file: Path to the source file (optional, used for relative path calculation)
     """
     def replace_wikilink(match):
         full_link = match.group(1)
@@ -61,7 +123,11 @@ def convert_wikilinks(content, mapping):
             name_without_ext = os.path.splitext(link_target)[0]
             ext = os.path.splitext(link_target)[1]
             slug = slugify(name_without_ext)
-            image_path = f'assets/{slug}{ext}'
+            # Calculate relative path to assets
+            if source_file:
+                image_path = calculate_relative_path(source_file, f'assets/{slug}{ext}')
+            else:
+                image_path = f'/assets/{slug}{ext}'
             return f'![{display_text}]({image_path})'
         
         # Remove .md extension if present
@@ -69,34 +135,45 @@ def convert_wikilinks(content, mapping):
         
         # Look up the target in the mapping
         if link_target in mapping:
-            new_path = mapping[link_target]
-            # Remove .md extension for cleaner URLs
-            if new_path.endswith('.md'):
-                new_path = new_path[:-3]
-            # Ensure path doesn't start with / (use relative paths for MkDocs)
-            if new_path.startswith('/'):
-                new_path = new_path[1:]
-            # Add trailing slash for directory-style URLs
-            if not new_path.endswith('/'):
-                new_path = new_path + '/'
+            target_path = mapping[link_target]
+            # Calculate relative path from source to target
+            new_path = calculate_relative_path(source_file, target_path)
             return f'[{display_text}]({new_path})'
         else:
             # If not found in mapping, create a simple slugified version
             slug = slugify(link_target)
-            print(f"Warning: Link target '{link_target}' not found in mapping, using slug '{slug}/'", file=sys.stderr)
-            return f'[{display_text}]({slug}/)'
+            if source_file:
+                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '{slug}/'", file=sys.stderr)
+                # Try to create a reasonable relative path
+                new_path = calculate_relative_path(source_file, f'{slug}.md')
+            else:
+                print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}/'", file=sys.stderr)
+                new_path = f'/{slug}/'
+            return f'[{display_text}]({new_path})'
     
     # Replace wikilinks
     pattern = r'\[\[([^\]]+)\]\]'
     return re.sub(pattern, replace_wikilink, content)
 
 
-def process_file(filepath, mapping):
-    """Process a single markdown file."""
+def process_file(filepath, mapping, docs_dir='.site_content'):
+    """Process a single markdown file.
+    
+    Args:
+        filepath: Path to the file to process
+        mapping: Dictionary mapping page names to their paths
+        docs_dir: The docs directory (used to calculate relative paths)
+    """
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    new_content = convert_wikilinks(content, mapping)
+    # Get the relative path from docs_dir for proper link calculation
+    if filepath.startswith(docs_dir + '/'):
+        relative_path = filepath[len(docs_dir) + 1:]
+    else:
+        relative_path = filepath
+    
+    new_content = convert_wikilinks(content, mapping, relative_path)
     
     if new_content != content:
         with open(filepath, 'w', encoding='utf-8') as f:
@@ -113,7 +190,7 @@ def process_directory(directory, mapping):
         for filename in files:
             if filename.endswith('.md'):
                 filepath = os.path.join(root, filename)
-                if process_file(filepath, mapping):
+                if process_file(filepath, mapping, directory):
                     changed_count += 1
                     print(f"Updated wikilinks in: {filepath}")
     
