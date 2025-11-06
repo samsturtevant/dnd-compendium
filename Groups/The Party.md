@@ -1,3 +1,5 @@
+# The Party
+
 Originally formed at the [[Peapod Public House]].
 
 ## Amnesia
