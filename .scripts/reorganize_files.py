@@ -12,7 +12,6 @@ This script:
 import os
 import re
 import json
-from pathlib import Path
 
 
 def slugify(text):
