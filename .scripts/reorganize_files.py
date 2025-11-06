@@ -131,15 +131,20 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
                 new_dir = os.path.dirname(new_path)
                 new_index_path = os.path.join(new_dir, 'index.md')
                 
-                # Only convert if there isn't already an index.md in the source
+                # Only convert if there isn't already an index.md in the source or destination
                 source_index = os.path.join(os.path.dirname(original_path), 'index.md')
-                if not os.path.exists(source_index):
+                dest_index = new_index_path
+                
+                if not os.path.exists(source_index) and not os.path.exists(dest_index):
                     new_path = new_index_path
                     # Update the relative path too
                     new_relative_path = os.path.relpath(new_path, dest_dir)
                     print(f"  -> Converting to section index: {filename}")
                 else:
-                    print(f"  -> Skipping conversion (index.md already exists): {filename}")
+                    if os.path.exists(source_index):
+                        print(f"  -> Skipping conversion (index.md exists in source): {filename}")
+                    else:
+                        print(f"  -> Skipping conversion (index.md exists in destination): {filename}")
             
             # Create directory if needed
             new_dir = os.path.dirname(new_path)
