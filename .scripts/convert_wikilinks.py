@@ -66,16 +66,22 @@ def convert_wikilinks(content, mapping):
         # Look up the target in the mapping
         if link_target in mapping:
             new_path = mapping[link_target]
+            # Remove .md extension for cleaner URLs
+            if new_path.endswith('.md'):
+                new_path = new_path[:-3]
             # Make path absolute from docs root
             if not new_path.startswith('/'):
                 new_path = '/' + new_path
+            # Add trailing slash for directory-style URLs
+            if not new_path.endswith('/'):
+                new_path = new_path + '/'
             return f'[{display_text}]({new_path})'
         else:
             # If not found in mapping, create a simple slugified version
             from reorganize_files import slugify
             slug = slugify(link_target)
-            print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}.md'", file=sys.stderr)
-            return f'[{display_text}](/{slug}.md)'
+            print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}/'", file=sys.stderr)
+            return f'[{display_text}](/{slug}/)'
     
     # Replace wikilinks
     pattern = r'\[\[([^\]]+)\]\]'
