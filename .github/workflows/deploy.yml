@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -37,7 +40,7 @@ jobs:
           EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates")
 
           # Find all markdown files with #publish-me
-          find . -type f -exec grep -l "#publish-me" {} \; | while IFS= read -r file; do
+          find dnd-vault/ -type f -name "*.md" -exec grep -l "#publish-me" {} \; | while IFS= read -r file; do
             SKIP=0
             for folder in "${EXCLUSION[@]}"; do
               if [[ "$file" == *"/$folder/"* ]]; then
@@ -85,4 +88,6 @@ jobs:
       # Step 6: Build and Deploy MkDocs Site
       - name: Deploy MkDocs to GitHub Pages
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdocs gh-deploy --force --config-file mkdocs.yml
