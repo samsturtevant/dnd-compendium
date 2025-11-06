@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Hollow Root Covenant"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for Hollow Root Covenant"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from README"
+              "title": "Outgoing links from Hollow Root Covenant"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of Hollow Root Covenant"
             }
           }
         ]
@@ -166,12 +166,15 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "github-sync:Sync with Remote": false
     }
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
     "index.md",
+    "README.md",
+    "Groups/The Party.md",
     "Assets/Mirecradle Entry image.png",
     "Assets",
     "Templates",
@@ -200,14 +203,12 @@
     "Groups/Hollow Root Covenant/Buried Star.md",
     "Groups/Enchanter's Guild/Enchanter's Guild.md",
     "Groups/Underbelly Mercantile",
-    "Groups/The Party.md",
     "Groups/The Bogwatchers",
     "Groups/Hollow Root Covenant",
     "Groups/Enchanter's Guild",
     "Groups",
     "Locations/Brindlewood/Peapod Public House.md",
     "Locations/Brindlewood/Brindlewood.md",
-    "Locations/Underground Chamber.md",
     "dnd-vault/Assets/Mirecradle Entry image.png"
   ]
 }
