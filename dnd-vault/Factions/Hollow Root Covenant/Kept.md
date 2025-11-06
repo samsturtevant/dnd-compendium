@@ -2,3 +2,5 @@ The Kept are members of the [[Factions/Hollow Root Covenant/Hollow Root Covenant
 
 ## Wish
 A Wish is the manifestation of someone's deepest desire. When members of the [[Factions/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]] are believed to have fulfilled their highest duty, the [[Buried Star]] grants them their Wish.
+
+#wiki
