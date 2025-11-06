@@ -3,6 +3,7 @@ site/
 .site_content/
 .site_content_temp/
 .site_mapping.json
+tmp/
 
 # Python
 __pycache__/

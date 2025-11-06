@@ -121,6 +121,19 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             new_relative_path = get_new_path(relative_original)
             new_path = os.path.join(dest_dir, new_relative_path)
             
+            # Check if the file name (without extension) matches its parent directory name
+            # If so, rename it to index.md to make it the section page
+            filename_without_ext = os.path.splitext(filename)[0]
+            parent_dir_name = os.path.basename(os.path.dirname(original_path))
+            
+            if filename_without_ext == parent_dir_name:
+                # This file should become the index for this section
+                new_dir = os.path.dirname(new_path)
+                new_path = os.path.join(new_dir, 'index.md')
+                # Update the relative path too
+                new_relative_path = os.path.relpath(new_path, dest_dir)
+                print(f"  -> Converting to section index: {filename}")
+            
             # Create directory if needed
             new_dir = os.path.dirname(new_path)
             os.makedirs(new_dir, exist_ok=True)
