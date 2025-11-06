@@ -1,1 +1,3 @@
+Located near [[Brindlewood]]
+
 #wiki
