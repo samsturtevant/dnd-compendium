@@ -4,16 +4,16 @@ Welcome to the D&D Campaign Compendium! This site contains information about the
 
 ## Contents
 
-### [Characters](/characters/)
+### [Characters](characters/)
 Learn about the key characters in the campaign.
 
-### [Locations](/locations/)
+### [Locations](locations/)
 Explore the various locations in the campaign world.
 
-### [Factions](/factions/)
+### [Factions](factions/)
 Discover the factions and organizations at play.
 
-### [Sessions](/sessions/)
+### [Sessions](sessions/)
 Read through session summaries and notes.
 
 ---
