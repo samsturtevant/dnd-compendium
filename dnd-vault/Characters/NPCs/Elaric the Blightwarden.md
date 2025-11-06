@@ -1,4 +1,7 @@
-[[Kept]] of the [[Factions/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]
+[[Kept]] of the [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]
+Brother to [[Sister Lethra|Lethra]]
+
+[[The Party]] really ticks him off
 
 A pale elf whose once-regal features have curdled into something elegant and wrong. His skin is thin as parchment, veined with sluggish ichor, and faintly green-gray like swamp mold. His hair hangs long and colorless, damp as if freshly exhumed.
 
