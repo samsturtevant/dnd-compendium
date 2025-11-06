@@ -11,6 +11,11 @@ import re
 import os
 import sys
 
+# Import slugify function from reorganize_files module
+# We need to add the script directory to the path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from reorganize_files import slugify
+
 
 def load_mapping(mapping_file):
     """Load the filename mapping."""
@@ -53,7 +58,6 @@ def convert_wikilinks(content, mapping):
         
         if is_image:
             # Handle image links - they go to assets/
-            from reorganize_files import slugify
             name_without_ext = os.path.splitext(link_target)[0]
             ext = os.path.splitext(link_target)[1]
             slug = slugify(name_without_ext)
@@ -78,7 +82,6 @@ def convert_wikilinks(content, mapping):
             return f'[{display_text}]({new_path})'
         else:
             # If not found in mapping, create a simple slugified version
-            from reorganize_files import slugify
             slug = slugify(link_target)
             print(f"Warning: Link target '{link_target}' not found in mapping, using slug '/{slug}/'", file=sys.stderr)
             return f'[{display_text}](/{slug}/)'
