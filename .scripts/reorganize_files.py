@@ -31,14 +31,14 @@ def slugify(text):
     return text
 
 
-def get_new_path(original_path, base_dir='dnd-vault'):
+def get_new_path(original_path, base_dir='.site_content_temp'):
     """
     Convert original path to new URL-friendly path.
     
     Examples:
-        dnd-vault/Characters/Elaric the Blightwarden.md -> characters/elaric-the-blightwarden.md
-        dnd-vault/Locations/Peapod Public House.md -> locations/peapod-public-house.md
-        .site_content_temp/dnd-vault/Characters/Foo.md -> characters/foo.md
+        ./Characters/Elaric the Blightwarden.md -> characters/elaric-the-blightwarden.md
+        ./Locations/Peapod Public House.md -> locations/peapod-public-house.md
+        .site_content_temp/Characters/Foo.md -> characters/foo.md
     """
     # Find and remove the base directory from the path
     parts_list = original_path.split('/')
@@ -50,8 +50,11 @@ def get_new_path(original_path, base_dir='dnd-vault'):
         relative_parts = parts_list[base_idx + 1:]
         relative_path = '/'.join(relative_parts)
     except ValueError:
-        # base_dir not found, use the whole path
-        relative_path = original_path
+        # base_dir not found, strip leading ./ if present
+        if original_path.startswith('./'):
+            relative_path = original_path[2:]
+        else:
+            relative_path = original_path
     
     # Split into directory parts and filename
     parts = relative_path.split('/')
@@ -122,7 +125,7 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
     print(f"Total files reorganized: {len(mapping)}")
 
 
-def copy_assets(source_dir, dest_dir, base_dir='dnd-vault'):
+def copy_assets(source_dir, dest_dir, base_dir='.site_content_temp'):
     """
     Copy asset files (images, etc.) to the destination with reorganization.
     
@@ -132,16 +135,11 @@ def copy_assets(source_dir, dest_dir, base_dir='dnd-vault'):
     # First try in source_dir
     assets_source = os.path.join(source_dir, 'Assets')
     
-    # If not found and source_dir contains base_dir, try going up
+    # If not found, try looking at the same level as source_dir
     if not os.path.exists(assets_source):
-        # Try to find base_dir in the path and look for Assets there
-        parts = source_dir.split('/')
-        if base_dir in parts:
-            # Go up to parent of base_dir and look for base_dir/Assets
-            base_idx = parts.index(base_dir)
-            parent_parts = parts[:base_idx]
-            parent_dir = '/'.join(parent_parts) if parent_parts else '.'
-            assets_source = os.path.join(parent_dir, base_dir, 'Assets')
+        # Look for Assets at the same level as the source directory
+        parent_dir = os.path.dirname(source_dir) if source_dir != '.' else '.'
+        assets_source = os.path.join(parent_dir, 'Assets')
     
     if not os.path.exists(assets_source):
         print(f"No Assets directory found (tried: {assets_source})")
