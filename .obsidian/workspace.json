@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Locations/Brindlewood/Peapod Public House/Misenchanted Lavender Mead.md",
+                "file": "Characters/PCs/Timothy Tuttle.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Misenchanted Lavender Mead"
+              "title": "Timothy Tuttle"
             }
           }
         ]
@@ -172,23 +172,25 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
-    "Misenchanted Lavender Mead_oehnuujt.png",
-    "Misenchanted Lavender Mead_2mgjorqg.png",
-    "Locations/Brindlewood/Peapod Public House",
     "Characters/PCs/Tobias Goreguts.md",
-    "Locations/Brindlewood/Peapod Public House/Misenchanted Lavender Mead.md",
-    "Miscellaneous/Twigball.md",
-    "Miscellaneous",
-    "Assets/tobias.png",
+    "Characters/NPCs/6 wolves.md",
     "Characters/PCs/Timothy Tuttle.md",
-    "Characters/NPCs/Rooted One.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Characters/NPCs/Sister Lethra.md",
-    "Characters/NPCs/Twigbeard.md",
-    "Characters/NPCs/Tavin.md",
-    "Characters/NPCs/Barnaby Thistlewick.md",
-    "Assets/barnaby.png",
     "Characters/NPCs/Maera Broadkettle.md",
+    "Characters/NPCs/Buster.md",
+    "Characters/NPCs/Barnaby Thistlewick.md",
+    "Assets/Misenchanted Lavender Mead_oehnuujt.png",
+    "Miscellaneous/Twigball.md",
+    "Misenchanted Lavender Mead_2mgjorqg.png",
+    "Locations/Brindlewood/Peapod Public House/Misenchanted Lavender Mead.md",
+    "Locations/Brindlewood/Peapod Public House",
+    "Miscellaneous",
+    "Assets/tobias.png",
+    "Characters/NPCs/Rooted One.md",
+    "Characters/PCs/Twigbeard.md",
+    "Characters/NPCs/Tavin.md",
+    "Assets/barnaby.png",
     "Assets/maera.png",
     "Characters/PCs/Eva Silverstream.md",
     "README.md",
@@ -196,7 +198,6 @@
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
     "Characters/PCs/Korran Mossborn.md",
     "Assets/korran.png",
-    "Characters/NPCs/Buster.md",
     "Assets/eva.png",
     "Assets/tavin.png",
     "Assets/buster.png",
@@ -204,7 +205,6 @@
     "docs/stylesheets",
     "docs",
     "Assets/entrancehall.png",
-    "Assets/twigbeard.png",
     "Characters/PCs/Lucian Lovelyre.md",
     "Characters/PCs/Mundus Decepi.md",
     "Characters/PCs/Wren.md",
