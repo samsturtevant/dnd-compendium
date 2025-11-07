@@ -9,7 +9,6 @@ theme:
   name: material
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.indexes
     - navigation.top
     - search.suggest
@@ -78,7 +77,8 @@ markdown_extensions:
 
 plugins:
   - search
-  - awesome-pages
+  - awesome-pages:
+      collapse_single_pages: true
   - tags
   # - mkdocs-simple-hooks:
   #     hooks:
