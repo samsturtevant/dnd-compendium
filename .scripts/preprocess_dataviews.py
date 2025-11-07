@@ -26,7 +26,9 @@ def format_info_box_line(line):
         value = value.strip()
         # Only process if we have both key and value
         if key and value:
-            return f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n'
+            # Use div with markdown block to allow proper processing
+            # Structure: outer div -> strong and span as direct children
+            return f'<div class="info-box-row" markdown="block"><strong>{key}:</strong> {value}</div>\n\n'
     
     return None
 
