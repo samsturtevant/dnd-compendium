@@ -11,12 +11,14 @@
             "id": "70c3fcae23163223",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Assets/entrancehall.png"
+                "file": "Twigball.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "entrancehall"
+              "icon": "lucide-file",
+              "title": "Twigball"
             }
           }
         ]
@@ -168,13 +170,15 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "0168d9fbc6afcc71",
+  "active": "70c3fcae23163223",
   "lastOpenFiles": [
-    "Assets/twigbeard.png",
     "Characters/NPCs/Twigbeard.md",
-    "Characters/NPCs/Barnaby Thistlewick.md",
+    "Twigball.md",
     "Characters/NPCs/Buster.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
+    "Assets/entrancehall.png",
+    "Assets/twigbeard.png",
+    "Characters/NPCs/Barnaby Thistlewick.md",
     "Characters/NPCs/Maera Broadkettle.md",
     "Characters/NPCs/Rooted One.md",
     "Characters/NPCs/Sister Lethra.md",
@@ -196,7 +200,6 @@
     "Locations/Brindlewood/Brindlewood.md",
     "Locations/Brindlewood/Peapod Public House.md",
     "Locations/Blighted Bog.md",
-    "Assets/entrancehall.png",
     "Assets",
     "Templates",
     "Characters/PCs",
