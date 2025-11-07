@@ -42,6 +42,9 @@ nav:
   - ... 
 # The index.md file is the home page from the `docs` folder
 
+extra_css:
+  - stylesheets/extra.css
+
 markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true

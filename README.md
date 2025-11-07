@@ -32,6 +32,38 @@ To enable deployment, ensure GitHub Pages is configured in your repository setti
 2. Under **Source**, select **GitHub Actions**
 3. The workflow will automatically deploy on the next push to `main`
 
+## Content Features
+
+### Info Boxes (Wikipedia-style)
+
+You can add an info box to any page by placing a code block with triple backticks at the very beginning of your markdown file. The info box will appear as a styled container in the top-right corner of the page, similar to Wikipedia.
+
+**Syntax:**
+```
+```
+![[image.png]]
+Key: Value
+Another Key: [[Link]]
+```
+```
+
+**Example:**
+```
+```
+![[twigbeard.png]]
+Affiliations: [[Hollow Root Covenant]]
+Favorite Game: [[Twigball]]
+Race: Gnome
+Status: Alive
+```
+```
+
+The info box supports:
+- Images using `![[image.png]]` syntax (will be displayed at the top)
+- Key-value pairs with any text or wikilinks
+- Automatic link conversion for wikilinks like `[[Page Name]]`
+- Responsive design (full-width on mobile devices)
+
 ## Local Development
 
 To build and preview the site locally:
