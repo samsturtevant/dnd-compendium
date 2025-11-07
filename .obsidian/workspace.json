@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/NPCs/Barnaby Thistlewick.md",
+                "file": "Characters/NPCs/Elaric the Blightwarden.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Barnaby Thistlewick"
+              "title": "Elaric the Blightwarden"
             }
           }
         ]
@@ -170,8 +170,13 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "0168d9fbc6afcc71",
+  "active": "70c3fcae23163223",
   "lastOpenFiles": [
+    "Characters/NPCs/Sister Lethra.md",
+    "Characters/NPCs/Elaric the Blightwarden.md",
+    "Characters/NPCs/Twigbeard.md",
+    "Characters/NPCs/Tavin.md",
+    "Characters/NPCs/Barnaby Thistlewick.md",
     "Assets/barnaby.png",
     "Characters/NPCs/Maera Broadkettle.md",
     "Assets/maera.png",
@@ -182,21 +187,16 @@
     "Characters/PCs/Korran Mossborn.md",
     "Assets/korran.png",
     "Characters/NPCs/Buster.md",
-    "Characters/NPCs/Tavin.md",
-    "Characters/NPCs/Twigbeard.md",
     "Assets/eva.png",
     "Assets/tavin.png",
     "Assets/buster.png",
-    "Characters/NPCs/Elaric the Blightwarden.md",
     "Twigball.md",
     "docs/stylesheets/extra.css",
     "docs/stylesheets",
     "docs",
     "Assets/entrancehall.png",
     "Assets/twigbeard.png",
-    "Characters/NPCs/Barnaby Thistlewick.md",
     "Characters/NPCs/Rooted One.md",
-    "Characters/NPCs/Sister Lethra.md",
     "Characters/PCs/Lucian Lovelyre.md",
     "Characters/PCs/Mundus Decepi.md",
     "Characters/PCs/Timothy Tuttle.md",
