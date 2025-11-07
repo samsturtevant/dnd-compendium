@@ -201,7 +201,14 @@ async function createPullRequest(submission) {
       if (fileResponse.ok) {
         const fileData = await fileResponse.json();
         currentSha = fileData.sha;
-        currentContent = atob(fileData.content); // Decode base64
+        // Decode base64 content safely
+        try {
+          currentContent = atob(fileData.content);
+        } catch (e) {
+          // If atob fails (e.g., invalid base64), treat as empty
+          console.error('Failed to decode file content:', e);
+          currentContent = '';
+        }
       }
     } catch (e) {
       // File doesn't exist yet, which is fine
@@ -214,7 +221,11 @@ async function createPullRequest(submission) {
       newContent = submission.content;
     } else {
       // User only provided description, append as comment
-      newContent = currentContent + `\n\n<!-- Suggested edit: ${submission.description} -->`;
+      // Sanitize description to prevent comment injection
+      const sanitizedDescription = submission.description
+        .replace(/-->/g, '-- >')
+        .replace(/<!--/g, '<! --');
+      newContent = currentContent + `\n\n<!-- Suggested edit: ${sanitizedDescription} -->`;
     }
 
     // 5. Create or update file in the new branch
