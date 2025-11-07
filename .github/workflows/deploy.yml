@@ -125,6 +125,14 @@ jobs:
             echo "No stylesheets directory found"
           fi
 
+          # Copy javascripts if they exist
+          if [ -d docs/javascripts ]; then
+            cp -r docs/javascripts .site_content/
+            echo "Copied docs/javascripts"
+          else
+            echo "No javascripts directory found"
+          fi
+
           echo "Files reorganized successfully to .site_content"
 
       # Step 5: Preprocess Obsidian Features
