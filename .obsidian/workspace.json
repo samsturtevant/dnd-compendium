@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Timothy Tuttle"
             }
+          },
+          {
+            "id": "9f648fe572e52d96",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Miscellaneous/new page.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "new page"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -170,15 +185,16 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "70c3fcae23163223",
+  "active": "0168d9fbc6afcc71",
   "lastOpenFiles": [
+    "Characters/PCs/Timothy Tuttle.md",
+    "Miscellaneous/new page.md",
     "docs/javascripts/edit-ui.js",
     "docs/javascripts/config.js",
     "docs/javascripts",
     "EDIT_UI_SETUP.md",
     "Characters/PCs/Tobias Goreguts.md",
     "Characters/NPCs/6 wolves.md",
-    "Characters/PCs/Timothy Tuttle.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Characters/NPCs/Sister Lethra.md",
     "Characters/NPCs/Maera Broadkettle.md",
@@ -216,7 +232,6 @@
     "Groups/Enchanters' Guild/Enchanters' Guild.md",
     "Groups/Hollow Root Covenant/Buried Star.md",
     "Assets",
-    "Templates",
-    "Characters/PCs"
+    "Templates"
   ]
 }
