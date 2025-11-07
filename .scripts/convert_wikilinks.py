@@ -80,6 +80,7 @@ def convert_wikilinks(content, mapping, source_file=None):
     - [[Page Name|Display Text]] -> [Display Text](../../path/to/page-name.md)
     - [[Folder/Page Name]] -> [Page Name](../../folder/page-name.md)
     - [[Image.png]] -> ![Image](../../assets/image.png) (for images)
+    - ![[Image.png]] -> ![Image](../../assets/image.png) (for images with ! prefix)
     
     Links are relative to the source file location and include .md extension
     so MkDocs can properly process them.
@@ -90,7 +91,9 @@ def convert_wikilinks(content, mapping, source_file=None):
         source_file: Path to the source file (optional, used for relative path calculation)
     """
     def replace_wikilink(match):
-        full_link = match.group(1)
+        # Check if there's an exclamation mark before the wikilink
+        has_exclamation = match.group(1) == '!'
+        full_link = match.group(2)
         
         # Handle display text (e.g., [[Link|Display]])
         if '|' in full_link:
@@ -143,8 +146,9 @@ def convert_wikilinks(content, mapping, source_file=None):
                 new_path = f'/{slug}.md'
             return f'[{display_text}]({new_path})'
     
-    # Replace wikilinks
-    pattern = r'\[\[([^\]]+)\]\]'
+    # Replace wikilinks, optionally with ! prefix
+    # Captures optional ! before [[...]]
+    pattern = r'(!?)\[\[([^\]]+)\]\]'
     return re.sub(pattern, replace_wikilink, content)
 
 
