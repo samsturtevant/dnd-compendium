@@ -1,4 +1,4 @@
-# Hollow Root Covenant
+
 
 #wiki
 
