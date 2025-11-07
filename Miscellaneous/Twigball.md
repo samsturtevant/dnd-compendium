@@ -11,3 +11,5 @@ The game plays out as follows:
 3. Players call or raise the bet, then roll their d4
 4. Roll an additional d4 for each pair from the initial d4/d6/d8 rolls
 5. The highest total sum is the winner
+
+#wiki
