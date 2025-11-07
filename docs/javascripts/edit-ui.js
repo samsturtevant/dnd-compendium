@@ -33,7 +33,19 @@
   function getSourceFilePath() {
     // Get current page URL relative to site root
     const path = window.location.pathname;
-    const basePath = '/dnd-compendium/';
+    
+    // Detect base path from site_url in config or assume root
+    // For GitHub Pages: /dnd-compendium/
+    // For local dev: /
+    let basePath = '/';
+    const pathParts = path.split('/').filter(p => p);
+    
+    // Check if first part looks like a known folder (characters, locations, groups, etc.)
+    const knownFolders = ['characters', 'locations', 'groups', 'assets', 'miscellaneous'];
+    if (pathParts.length > 0 && !knownFolders.includes(pathParts[0].toLowerCase())) {
+      // First part is likely the repo name (e.g., 'dnd-compendium')
+      basePath = '/' + pathParts[0] + '/';
+    }
     
     // Remove base path and trailing slash
     let relativePath = path.replace(basePath, '').replace(/\/$/, '');
@@ -44,11 +56,13 @@
     }
     
     // Convert URL path back to source file path
-    // This is a simplified mapping - in reality you'd need the site mapping JSON
-    // For now, we'll construct likely paths
+    // The path is already URL-friendly from reorganize_files.py
+    // We need to convert it back to the original structure
+    // e.g., "characters/npcs/barnaby-thistlewick" -> "Characters/NPCs/Barnaby Thistlewick.md"
+    
     const parts = relativePath.split('/');
     
-    // Capitalize first letter of each part and join
+    // Capitalize first letter of each part and replace hyphens with spaces
     const filePath = parts.map(part => {
       return part.split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
