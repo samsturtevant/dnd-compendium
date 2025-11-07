@@ -170,8 +170,10 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "0168d9fbc6afcc71",
+  "active": "70c3fcae23163223",
   "lastOpenFiles": [
+    "Misenchanted Lavender Mead_oehnuujt.png",
+    "Misenchanted Lavender Mead_2mgjorqg.png",
     "Locations/Brindlewood/Peapod Public House",
     "Characters/PCs/Tobias Goreguts.md",
     "Locations/Brindlewood/Peapod Public House/Misenchanted Lavender Mead.md",
@@ -215,8 +217,6 @@
     "Templates",
     "Characters/PCs",
     "Characters/NPCs",
-    "Characters",
-    "Groups/Underbelly Mercantile",
-    "dnd-vault/Assets/Mirecradle Entry image.png"
+    "Characters"
   ]
 }
