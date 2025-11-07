@@ -12,11 +12,14 @@ The site is automatically built and deployed to GitHub Pages via GitHub Actions 
 
 ### How it works
 
-1. **Filter**: Only markdown files tagged with `#wiki` are published
-2. **Exclude**: Certain folders (Journal, TODO, Feelings, Private, Templates) are never published
-3. **Process**: Obsidian-specific syntax (like `[[wikilinks]]` and dataview queries) is converted to standard markdown
-4. **Build**: MkDocs builds a static site with Material theme
-5. **Deploy**: GitHub Actions deploys the site to GitHub Pages
+1. **Clean**: Previous build artifacts are removed to ensure a fresh build
+2. **Filter**: Only markdown files tagged with `#wiki` are published
+3. **Exclude**: Certain folders (Journal, TODO, Feelings, Private, Templates) are never published
+4. **Process**: Obsidian-specific syntax (like `[[wikilinks]]` and dataview queries) is converted to standard markdown
+5. **Build**: MkDocs builds a static site with Material theme using the `--clean` flag to remove stale files
+6. **Deploy**: GitHub Actions deploys the site to GitHub Pages
+
+The workflow ensures that when files are moved or renamed in the repository, old URLs are not retained in the deployed site by cleaning all temporary directories and using MkDocs' `--clean` flag during the build process.
 
 ### Configuration
 
@@ -40,11 +43,15 @@ To build and preview the site locally:
 # Install dependencies
 pip install mkdocs mkdocs-material mkdocs-awesome-pages-plugin pymdown-extensions mkdocs-simple-hooks
 
+# Clean previous builds (recommended)
+rm -rf .site_content .site_content_temp site .site_mapping.json
+
 # Prepare content (manually copy and process files as the workflow does)
 mkdir -p .site_content
 # ... copy your published files ...
 
-# Build and serve locally
+# Build with clean flag and serve locally
+mkdocs build --clean
 mkdocs serve
 ```
 
