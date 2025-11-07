@@ -6,6 +6,51 @@ import re
 import glob
 
 
+def process_block_tags(content):
+    """
+    Process <block> tags into info boxes.
+    
+    Converts:
+    <block>
+    ![[image.png]]
+    Key: Value
+    Another: [[Link]]
+    </block>
+    
+    Into an HTML info box that floats to the right like Wikipedia.
+    The content is left as markdown (with wikilinks) to be processed later.
+    """
+    pattern = r'<block>\s*\n([\s\S]*?)\n</block>'
+    
+    def replace_block(match):
+        block_content = match.group(1)
+        
+        lines = block_content.strip().split('\n')
+        html_parts = ['<div class="info-box" markdown="1">\n\n']
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            
+            # Handle image references - keep as markdown
+            if line.startswith('![[') and line.endswith(']]'):
+                html_parts.append(f'<div class="info-box-image" markdown="1">\n\n{line}\n\n</div>\n\n')
+            
+            # Handle key-value pairs - keep markdown links intact
+            elif ':' in line:
+                key, value = line.split(':', 1)
+                key = key.strip()
+                value = value.strip()
+                html_parts.append(f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n')
+        
+        html_parts.append('</div>\n\n')
+        
+        return ''.join(html_parts)
+    
+    return re.sub(pattern, replace_block, content)
+
+
 def process_info_box(content):
     """
     Process info box blocks at the start of files.
@@ -68,7 +113,10 @@ def process_dataview(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
 
-    # Process info boxes first (before other transformations)
+    # Process <block> tags first (Obsidian-friendly info boxes)
+    content = process_block_tags(content)
+    
+    # Process info boxes (triple-backtick format)
     content = process_info_box(content)
 
     # Replace `dataview` blocks with a placeholder (customize as needed)
