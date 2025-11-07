@@ -31,6 +31,49 @@ def slugify(text):
     return text
 
 
+def get_title_from_pages_file(directory):
+    """
+    Read the title from a .pages file in the given directory.
+    
+    Returns the title if found, otherwise None.
+    """
+    pages_file = os.path.join(directory, '.pages')
+    if os.path.exists(pages_file):
+        try:
+            with open(pages_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                # Look for "title: Some Title" pattern
+                match = re.search(r'^title:\s*(.+)$', content, re.MULTILINE)
+                if match:
+                    return match.group(1).strip()
+        except Exception as e:
+            print(f"Warning: Could not read .pages file {pages_file}: {e}")
+    return None
+
+
+def ensure_title_header(content, title):
+    """
+    Ensure the content has a title header (# Title).
+    
+    If the content doesn't start with a # header, add one.
+    Returns the modified content.
+    """
+    # Strip leading whitespace to check if there's already a title
+    stripped = content.lstrip()
+    
+    # Check if content already starts with a # header (H1)
+    if stripped.startswith('# '):
+        return content
+    
+    # Add the title header at the beginning
+    # Preserve any leading newlines if they exist
+    leading_newlines = len(content) - len(content.lstrip('\n'))
+    if leading_newlines > 0:
+        return '\n' * leading_newlines + f"# {title}\n\n" + stripped
+    else:
+        return f"# {title}\n\n" + content
+
+
 def get_new_path(original_path, base_dir='.site_content_temp'):
     """
     Convert original path to new URL-friendly path.
@@ -125,6 +168,7 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             # If so, rename it to index.md to make it the section page
             filename_without_ext = os.path.splitext(filename)[0]
             parent_dir_name = os.path.basename(os.path.dirname(original_path))
+            is_section_index = False
             
             if filename_without_ext == parent_dir_name and filename != 'index.md':
                 # This file should become the index for this section
@@ -139,6 +183,7 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
                     new_path = new_index_path
                     # Update the relative path too
                     new_relative_path = os.path.relpath(new_path, dest_dir)
+                    is_section_index = True
                     print(f"  -> Converting to section index: {filename}")
                 else:
                     if os.path.exists(source_index):
@@ -153,6 +198,17 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             # Copy file
             with open(original_path, 'r', encoding='utf-8') as f:
                 content = f.read()
+            
+            # If this file is being converted to a section index, ensure it has a title header
+            if is_section_index:
+                # Try to get title from .pages file first, then fall back to original filename
+                title = get_title_from_pages_file(os.path.dirname(original_path))
+                if not title:
+                    title = filename_without_ext
+                
+                content = ensure_title_header(content, title)
+                print(f"     Added title header: # {title}")
+            
             with open(new_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             
