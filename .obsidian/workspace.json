@@ -172,6 +172,10 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
+    "docs/javascripts/edit-ui.js",
+    "docs/javascripts/config.js",
+    "docs/javascripts",
+    "EDIT_UI_SETUP.md",
     "Characters/PCs/Tobias Goreguts.md",
     "Characters/NPCs/6 wolves.md",
     "Characters/PCs/Timothy Tuttle.md",
@@ -211,12 +215,8 @@
     "Groups/Bogwatchers' Sanctum/Bogwatchers' Sanctum.md",
     "Groups/Enchanters' Guild/Enchanters' Guild.md",
     "Groups/Hollow Root Covenant/Buried Star.md",
-    "Groups/Hollow Root Covenant/Kept.md",
-    "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
     "Assets",
     "Templates",
-    "Characters/PCs",
-    "Characters/NPCs",
-    "Characters"
+    "Characters/PCs"
   ]
 }
