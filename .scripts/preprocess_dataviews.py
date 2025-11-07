@@ -6,6 +6,29 @@ import re
 import glob
 
 
+def format_info_box_line(line):
+    """
+    Helper function to format a single line of an info box.
+    Returns the formatted HTML string for the line.
+    """
+    line = line.strip()
+    if not line:
+        return None
+    
+    # Handle image references - keep as markdown
+    if line.startswith('![[') and line.endswith(']]'):
+        return f'<div class="info-box-image" markdown="1">\n\n{line}\n\n</div>\n\n'
+    
+    # Handle key-value pairs - keep markdown links intact
+    elif ':' in line:
+        key, value = line.split(':', 1)
+        key = key.strip()
+        value = value.strip()
+        return f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n'
+    
+    return None
+
+
 def process_block_tags(content):
     """
     Process <block> tags into info boxes.
@@ -20,7 +43,7 @@ def process_block_tags(content):
     Into an HTML info box that floats to the right like Wikipedia.
     The content is left as markdown (with wikilinks) to be processed later.
     """
-    pattern = r'<block>\s*\n([\s\S]*?)\n</block>'
+    pattern = r'<block>\s*([\s\S]*?)\s*</block>'
     
     def replace_block(match):
         block_content = match.group(1)
@@ -29,20 +52,9 @@ def process_block_tags(content):
         html_parts = ['<div class="info-box" markdown="1">\n\n']
         
         for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-            
-            # Handle image references - keep as markdown
-            if line.startswith('![[') and line.endswith(']]'):
-                html_parts.append(f'<div class="info-box-image" markdown="1">\n\n{line}\n\n</div>\n\n')
-            
-            # Handle key-value pairs - keep markdown links intact
-            elif ':' in line:
-                key, value = line.split(':', 1)
-                key = key.strip()
-                value = value.strip()
-                html_parts.append(f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n')
+            formatted_line = format_info_box_line(line)
+            if formatted_line:
+                html_parts.append(formatted_line)
         
         html_parts.append('</div>\n\n')
         
@@ -85,20 +97,9 @@ def process_info_box(content):
         html_parts = ['<div class="info-box" markdown="1">\n\n']
         
         for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-            
-            # Handle image references - keep as markdown
-            if line.startswith('![[') and line.endswith(']]'):
-                html_parts.append(f'<div class="info-box-image" markdown="1">\n\n{line}\n\n</div>\n\n')
-            
-            # Handle key-value pairs - keep markdown links intact
-            elif ':' in line:
-                key, value = line.split(':', 1)
-                key = key.strip()
-                value = value.strip()
-                html_parts.append(f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n')
+            formatted_line = format_info_box_line(line)
+            if formatted_line:
+                html_parts.append(formatted_line)
         
         html_parts.append('</div>\n\n')
         
