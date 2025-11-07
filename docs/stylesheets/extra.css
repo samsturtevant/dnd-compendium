@@ -58,7 +58,7 @@
 
 .info-box-row .info-box-value {
   flex: 1;
-  min-width: 0;
+  min-width: 0; /* Allow text wrapping in flex container */
 }
 
 /* Mobile responsiveness */
