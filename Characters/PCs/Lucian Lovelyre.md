@@ -1,3 +1,8 @@
+<block>
+Former Affiliations: [[The Party]]
+Former Residence: [[Peapod Public House]]
+</block>
+
 Previous member of [[The Party]].
 
 Had a residency at the [[Peapod Public House]]
