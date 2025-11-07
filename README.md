@@ -6,6 +6,27 @@ A D&D campaign compendium built with MkDocs and deployed to GitHub Pages.
 
 This repository contains D&D campaign notes stored in markdown files at the root level that are automatically published to GitHub Pages when tagged with `#wiki`.
 
+### Features
+
+- 📝 **Anonymous Edit Suggestions**: Visitors can suggest edits without logging in
+- 🔐 **GitHub Edit Fallback**: Contributors can edit directly on GitHub
+- 🚀 **Automatic Publishing**: Changes are automatically built and deployed
+- 🔍 **Full-Text Search**: Find characters, locations, and lore quickly
+- 🎨 **Material Theme**: Clean, responsive design with light/dark modes
+
+## Contributing
+
+We welcome contributions! You can suggest edits in two ways:
+
+1. **Suggest an Edit** (no login): Use the "Suggest an Edit" button on any page
+2. **Edit on GitHub** (login required): Use the "Edit on GitHub" button
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+### Setting Up the Edit API
+
+If you're maintaining your own fork, see [EDIT_UI_SETUP.md](EDIT_UI_SETUP.md) for instructions on deploying the serverless API that powers anonymous edit suggestions.
+
 ## Deployment
 
 The site is automatically built and deployed to GitHub Pages via GitHub Actions when changes are pushed to the `main` branch.
