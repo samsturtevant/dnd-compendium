@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Twigball"
             }
+          },
+          {
+            "id": "6247f5f51f9aed94",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Characters/NPCs/Twigbeard.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Twigbeard"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -170,10 +185,13 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "70c3fcae23163223",
+  "active": "6247f5f51f9aed94",
   "lastOpenFiles": [
-    "Characters/NPCs/Twigbeard.md",
+    "docs/stylesheets/extra.css",
+    "docs/stylesheets",
+    "docs",
     "Twigball.md",
+    "Characters/NPCs/Twigbeard.md",
     "Characters/NPCs/Buster.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Assets/entrancehall.png",
@@ -199,7 +217,6 @@
     "Groups/The Party.md",
     "Locations/Brindlewood/Brindlewood.md",
     "Locations/Brindlewood/Peapod Public House.md",
-    "Locations/Blighted Bog.md",
     "Assets",
     "Templates",
     "Characters/PCs",
@@ -208,8 +225,6 @@
     "Groups/Underbelly Mercantile",
     "Groups/Bogwatchers' Sanctum",
     "Groups/Hollow Root Covenant",
-    "Groups/Enchanters' Guild",
-    "Groups",
     "dnd-vault/Assets/Mirecradle Entry image.png"
   ]
 }

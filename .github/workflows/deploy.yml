@@ -115,6 +115,14 @@ jobs:
             echo "No .overrides directory found"
           fi
 
+          # Copy stylesheets if they exist
+          if [ -d docs/stylesheets ]; then
+            cp -r docs/stylesheets .site_content/
+            echo "Copied docs/stylesheets"
+          else
+            echo "No stylesheets directory found"
+          fi
+
           echo "Files reorganized successfully to .site_content"
 
       # Step 5: Preprocess Obsidian Features
