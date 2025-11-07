@@ -111,6 +111,50 @@ def process_info_box(content):
     return re.sub(pattern, replace_info_box, content, count=1)
 
 
+def fix_list_spacing(content):
+    """
+    Ensure proper spacing before list items for markdown rendering.
+    
+    Markdown requires a blank line before list items to properly render them.
+    This function adds a blank line before:
+    - Unordered lists (lines starting with -, *, or +)
+    - Ordered lists (lines starting with digits followed by . or ))
+    
+    Only adds blank lines when the previous line is not already blank
+    and is not itself a list item.
+    """
+    lines = content.split('\n')
+    result = []
+    
+    for i, line in enumerate(lines):
+        # Check if current line is a list item
+        stripped = line.lstrip()
+        is_unordered_list = stripped and stripped[0] in ['-', '*', '+'] and len(stripped) > 1 and stripped[1] in [' ', '\t']
+        is_ordered_list = bool(re.match(r'^\s*\d+[\.\)]\s+', line))
+        is_list_item = is_unordered_list or is_ordered_list
+        
+        # If this is a list item, check if we need to add a blank line before it
+        if is_list_item and i > 0:
+            prev_line = lines[i - 1]
+            prev_stripped = prev_line.lstrip()
+            
+            # Check if previous line is also a list item (same type)
+            prev_is_unordered = prev_stripped and prev_stripped[0] in ['-', '*', '+'] and len(prev_stripped) > 1 and prev_stripped[1] in [' ', '\t']
+            prev_is_ordered = bool(re.match(r'^\s*\d+[\.\)]\s+', prev_line))
+            prev_is_list_item = prev_is_unordered or prev_is_ordered
+            
+            # Check if previous line is blank or empty
+            prev_is_blank = not prev_line.strip()
+            
+            # If previous line is not blank and not a list item, add blank line
+            if not prev_is_blank and not prev_is_list_item:
+                result.append('')
+        
+        result.append(line)
+    
+    return '\n'.join(result)
+
+
 # Process Dataview queries into Markdown tables
 def process_dataview(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
@@ -128,6 +172,9 @@ def process_dataview(file_path):
     # Remove #wiki tags (they're used for filtering but shouldn't be displayed)
     # Match #wiki on its own line or at the end of a line
     content = re.sub(r"^\s*#wiki\s*$|\s+#wiki\s*$", "", content, flags=re.MULTILINE)
+    
+    # Fix list spacing to ensure proper markdown rendering
+    content = fix_list_spacing(content)
 
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(content)
