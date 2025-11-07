@@ -3,8 +3,6 @@ Affiliations: [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Cov
 Family: [[Sister Lethra]] (Sister)
 </block>
 
-
-
 [[The Party]] really ticks him off
 
 #wiki
