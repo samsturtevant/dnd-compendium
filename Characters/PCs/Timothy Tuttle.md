@@ -2,7 +2,7 @@
 Affiliations: [[The Party]]
 </block>
 
-Current member of [[The Party]].
+Current member of [[The Party]].  
 
 ## Notable Events
 - Drank [[Sister Lethra]]'s scrying potion in the [[Underground Chamber]] as an initiation rite for the [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]. Doing so instilled within him a constant, generalized anxiety.
