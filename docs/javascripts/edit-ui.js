@@ -28,24 +28,30 @@
   };
 
   /**
+   * Get the base path of the site
+   */
+  function getBasePath() {
+    const path = window.location.pathname;
+    const pathParts = path.split('/').filter(p => p);
+    
+    // Check if first part looks like a known folder (case-insensitive)
+    // Use allowedPaths from config as the source of truth
+    const knownFolders = CONFIG.allowedPaths.map(p => p.toLowerCase());
+    if (pathParts.length > 0 && !knownFolders.includes(pathParts[0].toLowerCase())) {
+      // First part is likely the repo name (e.g., 'dnd-compendium')
+      return '/' + pathParts[0] + '/';
+    }
+    
+    return '/';
+  }
+
+  /**
    * Get the current page's source file path
    */
   function getSourceFilePath() {
     // Get current page URL relative to site root
     const path = window.location.pathname;
-    
-    // Detect base path from site_url in config or assume root
-    // For GitHub Pages: /dnd-compendium/
-    // For local dev: /
-    let basePath = '/';
-    const pathParts = path.split('/').filter(p => p);
-    
-    // Check if first part looks like a known folder (characters, locations, groups, etc.)
-    const knownFolders = ['characters', 'locations', 'groups', 'assets', 'miscellaneous'];
-    if (pathParts.length > 0 && !knownFolders.includes(pathParts[0].toLowerCase())) {
-      // First part is likely the repo name (e.g., 'dnd-compendium')
-      basePath = '/' + pathParts[0] + '/';
-    }
+    const basePath = getBasePath();
     
     // Remove base path and trailing slash
     let relativePath = path.replace(basePath, '').replace(/\/$/, '');
@@ -56,18 +62,11 @@
     }
     
     // Convert URL path back to source file path
-    // The path is already URL-friendly from reorganize_files.py
-    // We need to convert it back to the original structure
-    // e.g., "characters/npcs/barnaby-thistlewick" -> "Characters/NPCs/Barnaby Thistlewick.md"
-    
+    // Since we now preserve capitalization in the URLs, we just need to:
+    // 1. Replace hyphens with spaces
+    // 2. Add .md extension
     const parts = relativePath.split('/');
-    
-    // Capitalize first letter of each part and replace hyphens with spaces
-    const filePath = parts.map(part => {
-      return part.split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-    }).join('/') + '.md';
+    const filePath = parts.map(part => part.replace(/-/g, ' ')).join('/') + '.md';
     
     return filePath;
   }
@@ -147,6 +146,8 @@
     const container = document.querySelector('.md-content__inner');
     if (!container) return;
 
+    const editUrl = getGitHubEditUrl();
+
     // Create button container
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'edit-buttons';
@@ -160,7 +161,7 @@
             Suggest an Edit
           </button>
         ` : ''}
-        <a href="${getGitHubEditUrl()}" class="md-button edit-github-btn" target="_blank" rel="noopener noreferrer" title="Edit on GitHub (requires login)">
+        <a href="${editUrl}" class="md-button edit-github-btn" target="_blank" rel="noopener noreferrer" title="Edit on GitHub (requires login)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
             <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
           </svg>
@@ -169,8 +170,8 @@
       </div>
     `;
 
-    // Insert at the top of content
-    container.insertBefore(buttonContainer, container.firstChild);
+    // Insert at the bottom of content (append instead of insertBefore)
+    container.appendChild(buttonContainer);
 
     // Add event listener for suggest edit button
     if (CONFIG.apiEndpoint) {

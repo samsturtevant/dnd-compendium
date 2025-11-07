@@ -15,11 +15,9 @@ import json
 
 
 def slugify(text):
-    """Convert text to URL-friendly slug."""
+    """Convert text to URL-friendly slug while preserving capitalization."""
     # Remove file extension if present
     text = text.replace('.md', '')
-    # Convert to lowercase
-    text = text.lower()
     # Replace spaces and underscores with hyphens
     text = re.sub(r'[\s_]+', '-', text)
     # Remove any characters that aren't alphanumeric, hyphens, or forward slashes
@@ -199,15 +197,21 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             with open(original_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # If this file is being converted to a section index, ensure it has a title header
+            # Determine the title to use
+            title = None
             if is_section_index:
-                # Try to get title from .pages file first, then fall back to original filename
+                # If this file is being converted to a section index, try to get title from .pages file first
                 title = get_title_from_pages_file(os.path.dirname(original_path))
                 if not title:
                     title = filename_without_ext
-                
-                content = ensure_title_header(content, title)
                 print(f"     Added title header: # {title}")
+            else:
+                # For regular files, use the original filename (without extension) as the title
+                # This preserves capitalization from the source
+                title = filename_without_ext
+            
+            # Ensure all files have a title header to preserve capitalization
+            content = ensure_title_header(content, title)
             
             with open(new_path, 'w', encoding='utf-8') as f:
                 f.write(content)
