@@ -1,3 +1,7 @@
+<block>
+![512](Misenchanted%20Lavender%20Mead_oehnuujt.png)
+</block>
+
 An attempt by [[Maera Broadkettle]] to create a night of unforgettable euphoria at the [[Peapod Public House]], this concoction ultimately inflicted severe amnesia upon the original members of [[The Party]] and landed Maera in some legal trouble.
 
 ## Ingredients
