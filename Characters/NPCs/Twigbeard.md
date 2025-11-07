@@ -1,9 +1,9 @@
 Joryn "Twigbeard" Lindegaard is a [[Kept]] of the [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]
 
-```
+<block>
 ![[twigbeard.png]]
-Affiliations: [[Hollow Root Covenant]]
+Affiliations: [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]
 Favorite Game: [[Twigball]]
-```
+</block>
 
 #wiki
