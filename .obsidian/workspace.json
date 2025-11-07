@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/NPCs/Elaric the Blightwarden.md",
+                "file": "Characters/NPCs/Buster.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Elaric the Blightwarden"
+              "title": "Buster"
             }
           }
         ]
@@ -172,15 +172,17 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
-    "Characters/NPCs/Twigbeard.md",
     "Characters/NPCs/Tavin.md",
+    "Assets/tavin.png",
+    "Characters/NPCs/Buster.md",
+    "Assets/buster.png",
+    "Characters/NPCs/Twigbeard.md",
+    "Characters/NPCs/Elaric the Blightwarden.md",
     "Twigball.md",
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
     "docs/stylesheets/extra.css",
     "docs/stylesheets",
     "docs",
-    "Characters/NPCs/Buster.md",
-    "Characters/NPCs/Elaric the Blightwarden.md",
     "Assets/entrancehall.png",
     "Assets/twigbeard.png",
     "Characters/NPCs/Barnaby Thistlewick.md",
