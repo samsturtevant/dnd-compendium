@@ -1,6 +1,7 @@
 <block>
 ![[tavin.png]]
-Affiliations: [[Underbelly Mercantile]]
+Race: Halfling
+Affiliations: [[Underbelly Mercantile]] (Underling)
 Partner: [[Buster]]
 </block>
 
