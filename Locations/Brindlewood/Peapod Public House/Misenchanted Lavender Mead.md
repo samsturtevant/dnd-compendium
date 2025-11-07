@@ -26,3 +26,5 @@ Amongst junk mail, on Maera's desk was found a letter explaining their assessmen
 On that same desk, an unfinished letter is nearly complete-
 
 > "Thank you for your assessment. We are confident that we know who the culprit is, and we are taking action to ensure that they may never return to this establishment."
+
+#wiki

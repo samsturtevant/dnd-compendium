@@ -9,7 +9,6 @@ theme:
   name: material
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.indexes
     - navigation.top
     - search.suggest
@@ -45,6 +44,10 @@ nav:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/config.js
+  - javascripts/edit-ui.js
+
 markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
@@ -78,7 +81,8 @@ markdown_extensions:
 
 plugins:
   - search
-  - awesome-pages
+  - awesome-pages:
+      collapse_single_pages: true
   - tags
   # - mkdocs-simple-hooks:
   #     hooks:
