@@ -9,4 +9,6 @@ Good guy. Met the party when he came with Tavin to the [[Peapod Public House|Pea
 ## Early Life
 Buster has recounted facing racial discrimination from a young age, when children threw rocks at him and belittled his tusks.
 
+
+
 #wiki
