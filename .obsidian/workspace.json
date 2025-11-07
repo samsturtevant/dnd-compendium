@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/NPCs/Twigbeard.md",
+                "file": "Characters/NPCs/Elaric the Blightwarden.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Twigbeard"
+              "title": "Elaric the Blightwarden"
             }
           }
         ]
@@ -172,10 +172,10 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
+    "Characters/NPCs/Twigbeard.md",
     "Characters/NPCs/Tavin.md",
     "Twigball.md",
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
-    "Characters/NPCs/Twigbeard.md",
     "docs/stylesheets/extra.css",
     "docs/stylesheets",
     "docs",
