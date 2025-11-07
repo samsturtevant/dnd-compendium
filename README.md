@@ -16,12 +16,10 @@ This repository contains D&D campaign notes stored in markdown files at the root
 
 ## Contributing
 
-We welcome contributions! You can suggest edits in two ways:
+We welcome contributions! You can edit pages directly on GitHub:
 
-1. **Suggest an Edit** (no login): Use the "Suggest an Edit" button on any page
-2. **Edit on GitHub** (login required): Use the "Edit on GitHub" button
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+- Click the **"Edit on GitHub"** button on any page to suggest changes
+- All edits go through a pull request review process before being published
 
 ### Setting Up the Edit API
 
