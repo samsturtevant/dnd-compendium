@@ -30,6 +30,11 @@ wheels/
 .installed.cfg
 *.egg
 
+# Cloudflare Workers
+.cloudflare/node_modules/
+.cloudflare/.wrangler/
+.cloudflare/wrangler.toml.local
+
 # IDEs
 .vscode/
 .idea/
