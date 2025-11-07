@@ -42,6 +42,8 @@ jobs:
       # Step 4: Filter and reorganize files
       - name: Filter and Reorganize Public Notes
         run: |
+          # Clean up any previous build artifacts to ensure fresh build
+          rm -rf .site_content .site_content_temp site .site_mapping.json
           mkdir -p .site_content_temp
           # Define excluded folders that should never be published
           EXCLUSION=("Journal" "TODO" "Feelings" "Private" "Templates" ".git" ".github" ".scripts" "site" ".site_content")
@@ -123,6 +125,14 @@ jobs:
             echo "No stylesheets directory found"
           fi
 
+          # Copy javascripts if they exist
+          if [ -d docs/javascripts ]; then
+            cp -r docs/javascripts .site_content/
+            echo "Copied docs/javascripts"
+          else
+            echo "No javascripts directory found"
+          fi
+
           echo "Files reorganized successfully to .site_content"
 
       # Step 5: Preprocess Obsidian Features
@@ -134,7 +144,7 @@ jobs:
 
       # Step 6: Build MkDocs Site
       - name: Build MkDocs Site
-        run: mkdocs build --config-file mkdocs.yml
+        run: mkdocs build --clean --config-file mkdocs.yml
 
       # Step 7: Upload artifact for GitHub Pages
       - name: Upload artifact
