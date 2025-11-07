@@ -273,7 +273,7 @@
 
     // Check honeypot
     if (form.elements.website.value) {
-      console.log('Honeypot triggered');
+      // Silently reject spam submissions
       return false;
     }
 
@@ -317,7 +317,10 @@
         
         // Close modal after 5 seconds
         setTimeout(() => {
-          document.querySelector('.edit-modal').remove();
+          const modal = document.querySelector('.edit-modal');
+          if (modal) {
+            modal.remove();
+          }
         }, 5000);
       } else {
         // Error
@@ -348,11 +351,15 @@
     }
 
     // Re-initialize on navigation (for SPA-style page transitions)
-    if (window.navigation) {
-      window.navigation.addEventListener('navigate', () => {
-        setTimeout(createEditButtons, 100);
-      });
-    }
+    // Using popstate for better browser compatibility
+    window.addEventListener('popstate', () => {
+      setTimeout(createEditButtons, 100);
+    });
+    
+    // Also listen for hashchange as fallback
+    window.addEventListener('hashchange', () => {
+      setTimeout(createEditButtons, 100);
+    });
   }
 
   // Start
