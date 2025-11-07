@@ -1,5 +1,5 @@
 [[Kept]] of the [[Groups/Hollow Root Covenant/Hollow Root Covenant|Hollow Root Covenant]]
-Brother to [[Sister Lethra|Lethra]]
+[[Sister Lethra|Lethra]] (Brother)
 
 [[The Party]] really ticks him off
 

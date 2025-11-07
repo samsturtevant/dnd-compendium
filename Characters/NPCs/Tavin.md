@@ -1,9 +1,9 @@
 <block>
+![[tavin.png]]
 Affiliations: [[Underbelly Mercantile]]
 Partner: [[Buster]]
 </block>
 
-Underling of the [[Underbelly Mercantile]]
-Partnered with [[Buster]]
+Buster's snooty partner. Just a bad vibe, smokes his pipe and is rude. Hasn't made an attempt to be courteous to Buster.
 
 #wiki
