@@ -111,6 +111,20 @@ def process_info_box(content):
     return re.sub(pattern, replace_info_box, content, count=1)
 
 
+def is_unordered_list_item(line):
+    """Check if a line is an unordered list item (-, *, or + followed by space/tab)."""
+    stripped = line.lstrip()
+    return (stripped and 
+            len(stripped) > 1 and 
+            stripped[0] in ['-', '*', '+'] and 
+            stripped[1] in [' ', '\t'])
+
+
+def is_ordered_list_item(line):
+    """Check if a line is an ordered list item (number followed by . or ) and space)."""
+    return bool(re.match(r'^\s*\d+[\.\)]\s+', line))
+
+
 def fix_list_spacing(content):
     """
     Ensure proper spacing before list items for markdown rendering.
@@ -128,20 +142,14 @@ def fix_list_spacing(content):
     
     for i, line in enumerate(lines):
         # Check if current line is a list item
-        stripped = line.lstrip()
-        is_unordered_list = stripped and stripped[0] in ['-', '*', '+'] and len(stripped) > 1 and stripped[1] in [' ', '\t']
-        is_ordered_list = bool(re.match(r'^\s*\d+[\.\)]\s+', line))
-        is_list_item = is_unordered_list or is_ordered_list
+        is_list_item = is_unordered_list_item(line) or is_ordered_list_item(line)
         
         # If this is a list item, check if we need to add a blank line before it
         if is_list_item and i > 0:
             prev_line = lines[i - 1]
-            prev_stripped = prev_line.lstrip()
             
-            # Check if previous line is also a list item (same type)
-            prev_is_unordered = prev_stripped and prev_stripped[0] in ['-', '*', '+'] and len(prev_stripped) > 1 and prev_stripped[1] in [' ', '\t']
-            prev_is_ordered = bool(re.match(r'^\s*\d+[\.\)]\s+', prev_line))
-            prev_is_list_item = prev_is_unordered or prev_is_ordered
+            # Check if previous line is also a list item
+            prev_is_list_item = is_unordered_list_item(prev_line) or is_ordered_list_item(prev_line)
             
             # Check if previous line is blank or empty
             prev_is_blank = not prev_line.strip()
