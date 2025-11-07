@@ -306,7 +306,7 @@
         // Success
         resultDiv.className = 'edit-result edit-result-success';
         resultDiv.innerHTML = `
-          <h3>✓ Suggestion submitted successfully!</h3>
+          <h3>Suggestion submitted successfully!</h3>
           <p>Your edit has been submitted as <a href="${result.pullRequestUrl}" target="_blank" rel="noopener noreferrer">pull request #${result.pullRequestNumber}</a>.</p>
           <p>The maintainers will review your suggestion and merge it if appropriate.</p>
         `;
@@ -331,7 +331,7 @@
       console.error('Edit submission error:', error);
       resultDiv.className = 'edit-result edit-result-error';
       resultDiv.innerHTML = `
-        <h3>⚠ Submission failed</h3>
+        <h3>Submission failed</h3>
         <p>${error.message || 'An error occurred. Please try again later or use the "Edit on GitHub" button.'}</p>
       `;
       resultDiv.style.display = 'block';
