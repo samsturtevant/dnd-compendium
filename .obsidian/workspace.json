@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/NPCs/Buster.md",
+                "file": "Characters/PCs/Korran Mossborn.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Buster"
+              "title": "Korran Mossborn"
             }
           }
         ]
@@ -172,11 +172,14 @@
   },
   "active": "70c3fcae23163223",
   "lastOpenFiles": [
-    "Characters/NPCs/Tavin.md",
+    "Assets/korran.png",
+    "Characters/PCs/Eva Silverstream.md",
     "Characters/NPCs/Buster.md",
+    "Characters/NPCs/Tavin.md",
+    "Characters/NPCs/Twigbeard.md",
+    "Assets/eva.png",
     "Assets/tavin.png",
     "Assets/buster.png",
-    "Characters/NPCs/Twigbeard.md",
     "Characters/NPCs/Elaric the Blightwarden.md",
     "Twigball.md",
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
@@ -190,7 +193,6 @@
     "Characters/NPCs/Rooted One.md",
     "Characters/NPCs/Sister Lethra.md",
     "Characters/PCs/Lucian Lovelyre.md",
-    "Characters/PCs/Eva Silverstream.md",
     "Characters/PCs/Korran Mossborn.md",
     "Characters/PCs/Mundus Decepi.md",
     "Characters/PCs/Timothy Tuttle.md",
