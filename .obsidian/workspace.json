@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/PCs/Eva Silverstream.md",
+                "file": "Characters/NPCs/Maera Broadkettle.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Eva Silverstream"
+              "title": "Maera Broadkettle"
             }
           }
         ]
@@ -170,14 +170,15 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "70c3fcae23163223",
+  "active": "0168d9fbc6afcc71",
   "lastOpenFiles": [
+    "Assets/maera.png",
+    "Characters/PCs/Eva Silverstream.md",
     "README.md",
     "Locations/Hollow Root Covenant.md",
     "Groups/Hollow Root Covenant/Hollow Root Covenant.md",
     "Characters/PCs/Korran Mossborn.md",
     "Assets/korran.png",
-    "Characters/PCs/Eva Silverstream.md",
     "Characters/NPCs/Buster.md",
     "Characters/NPCs/Tavin.md",
     "Characters/NPCs/Twigbeard.md",
@@ -206,7 +207,6 @@
     "Groups/Hollow Root Covenant/Kept.md",
     "Groups/Underbelly Mercantile/Underbelly Mercantile.md",
     "Groups/The Party.md",
-    "Locations/Brindlewood/Brindlewood.md",
     "Assets",
     "Templates",
     "Characters/PCs",
