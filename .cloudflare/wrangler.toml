@@ -1,0 +1,21 @@
+name = "dnd-compendium-edit-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespace for rate limiting (optional, create in Cloudflare dashboard)
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "your_kv_namespace_id"
+
+# Environment variables to set in Cloudflare Workers dashboard:
+# - GITHUB_TOKEN: GitHub Personal Access Token or App token with repo scope
+# - GITHUB_REPO: Repository in format "owner/repo" (e.g., "samsturtevant/dnd-compendium")
+# - GITHUB_BASE_BRANCH: Base branch name (default: "main")
+# - ALLOWED_ORIGINS: Comma-separated allowed origins (e.g., "https://samsturtevant.github.io")
+# - RATE_LIMIT_PER_HOUR: (Optional) Number of submissions per IP per hour (default: 5)
+
+[env.production]
+# Production environment variables
+
+[env.staging]
+# Staging environment variables
