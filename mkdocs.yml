@@ -44,6 +44,10 @@ nav:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/config.js
+  - javascripts/edit-ui.js
+
 markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
