@@ -34,9 +34,10 @@
     const path = window.location.pathname;
     const pathParts = path.split('/').filter(p => p);
     
-    // Check if first part looks like a known folder (characters, locations, groups, etc.)
-    const knownFolders = ['characters', 'locations', 'groups', 'assets', 'miscellaneous'];
-    if (pathParts.length > 0 && !knownFolders.some(f => pathParts[0].toLowerCase() === f)) {
+    // Check if first part looks like a known folder (case-insensitive)
+    // Use allowedPaths from config as the source of truth
+    const knownFolders = CONFIG.allowedPaths.map(p => p.toLowerCase());
+    if (pathParts.length > 0 && !knownFolders.includes(pathParts[0].toLowerCase())) {
       // First part is likely the repo name (e.g., 'dnd-compendium')
       return '/' + pathParts[0] + '/';
     }
