@@ -6,10 +6,70 @@ import re
 import glob
 
 
+def process_info_box(content):
+    """
+    Process info box blocks at the start of files.
+    
+    Converts:
+    ```
+    ![[image.png]]
+    Key: Value
+    Another: [[Link]]
+    ```
+    
+    Into an HTML info box that floats to the right like Wikipedia.
+    The content is left as markdown (with wikilinks) to be processed later.
+    """
+    # Match code blocks at the very start of the file (after optional whitespace)
+    # that contain image references and key-value pairs
+    pattern = r'^(\s*)```\s*\n([\s\S]*?)\n```'
+    
+    def replace_info_box(match):
+        leading_space = match.group(1)
+        block_content = match.group(2)
+        
+        # Check if this looks like an info box (has image or key-value pairs)
+        has_image = re.search(r'!\[\[.*?\]\]', block_content)
+        has_key_value = re.search(r'^[^:\n]+:.+$', block_content, re.MULTILINE)
+        
+        if not (has_image or has_key_value):
+            # Not an info box, leave it as-is
+            return match.group(0)
+        
+        lines = block_content.strip().split('\n')
+        html_parts = ['<div class="info-box" markdown="1">\n\n']
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            
+            # Handle image references - keep as markdown
+            if line.startswith('![[') and line.endswith(']]'):
+                html_parts.append(f'<div class="info-box-image" markdown="1">\n\n{line}\n\n</div>\n\n')
+            
+            # Handle key-value pairs - keep markdown links intact
+            elif ':' in line:
+                key, value = line.split(':', 1)
+                key = key.strip()
+                value = value.strip()
+                html_parts.append(f'<div class="info-box-row" markdown="1">**{key}:** {value}</div>\n\n')
+        
+        html_parts.append('</div>\n\n')
+        
+        return leading_space + ''.join(html_parts)
+    
+    # Only match at the start of the content
+    return re.sub(pattern, replace_info_box, content, count=1)
+
+
 # Process Dataview queries into Markdown tables
 def process_dataview(file_path):
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
+
+    # Process info boxes first (before other transformations)
+    content = process_info_box(content)
 
     # Replace `dataview` blocks with a placeholder (customize as needed)
     content = re.sub(r"```dataview([\s\S]*?)```", "Dataview Query: \\1", content)
@@ -18,7 +78,7 @@ def process_dataview(file_path):
     # Match #wiki on its own line or at the end of a line
     content = re.sub(r"^\s*#wiki\s*$|\s+#wiki\s*$", "", content, flags=re.MULTILINE)
 
-    with open(file_path, "w") as file:
+    with open(file_path, "w", encoding="utf-8") as file:
         file.write(content)
 
 
