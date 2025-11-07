@@ -31,13 +31,9 @@
 }
 
 .info-box-row {
-  display: flex;
-  gap: 0.75em;
   margin: 0.4em 0;
-  line-height: 1.6;
   padding: 0.2em 0;
   border-bottom: 1px solid var(--md-default-fg-color--lightest);
-  align-items: flex-start;
 }
 
 .info-box-row:last-child {
@@ -45,15 +41,24 @@
 }
 
 .info-box-row p {
+  display: flex;
+  gap: 0.5em;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  align-items: flex-start;
 }
 
 .info-box-row strong {
   flex-shrink: 0;
-  width: 90px;
+  min-width: 90px;
   color: var(--md-default-fg-color--light);
   font-weight: 600;
+}
+
+.info-box-row .info-box-value {
+  flex: 1;
+  min-width: 0; /* Allow text wrapping in flex container */
 }
 
 /* Mobile responsiveness */
