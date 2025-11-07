@@ -27,34 +27,6 @@
     rateLimitKey: 'edit_last_submit'
   };
 
-  // URL to source mapping (loaded asynchronously)
-  let urlToSourceMapping = null;
-
-  /**
-   * Load the URL to source mapping
-   */
-  async function loadUrlToSourceMapping() {
-    if (urlToSourceMapping !== null) {
-      return urlToSourceMapping;
-    }
-    
-    try {
-      // Try to load the mapping file
-      const basePath = getBasePath();
-      const response = await fetch(`${basePath}url-to-source-mapping.json`);
-      if (response.ok) {
-        urlToSourceMapping = await response.json();
-        return urlToSourceMapping;
-      }
-    } catch (e) {
-      console.warn('Could not load URL to source mapping:', e);
-    }
-    
-    // Return empty mapping if loading failed
-    urlToSourceMapping = {};
-    return urlToSourceMapping;
-  }
-
   /**
    * Get the base path of the site
    */
@@ -64,7 +36,7 @@
     
     // Check if first part looks like a known folder (characters, locations, groups, etc.)
     const knownFolders = ['characters', 'locations', 'groups', 'assets', 'miscellaneous'];
-    if (pathParts.length > 0 && !knownFolders.includes(pathParts[0].toLowerCase())) {
+    if (pathParts.length > 0 && !knownFolders.some(f => pathParts[0].toLowerCase() === f)) {
       // First part is likely the repo name (e.g., 'dnd-compendium')
       return '/' + pathParts[0] + '/';
     }
@@ -75,7 +47,7 @@
   /**
    * Get the current page's source file path
    */
-  async function getSourceFilePath() {
+  function getSourceFilePath() {
     // Get current page URL relative to site root
     const path = window.location.pathname;
     const basePath = getBasePath();
@@ -88,24 +60,12 @@
       return null; // Index page is not editable
     }
     
-    // Load the mapping
-    const mapping = await loadUrlToSourceMapping();
-    
-    // Look up the URL path in the mapping
-    if (mapping && mapping[relativePath]) {
-      // The mapping already contains the clean source path
-      return mapping[relativePath];
-    }
-    
-    // Fallback: try to reconstruct the path (old behavior)
-    // This won't preserve correct capitalization but is better than nothing
-    console.warn('Source path not found in mapping for:', relativePath);
+    // Convert URL path back to source file path
+    // Since we now preserve capitalization in the URLs, we just need to:
+    // 1. Replace hyphens with spaces
+    // 2. Add .md extension
     const parts = relativePath.split('/');
-    const filePath = parts.map(part => {
-      return part.split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-    }).join('/') + '.md';
+    const filePath = parts.map(part => part.replace(/-/g, ' ')).join('/') + '.md';
     
     return filePath;
   }
@@ -113,8 +73,8 @@
   /**
    * Check if current page is editable based on path rules
    */
-  async function isPageEditable() {
-    const filePath = await getSourceFilePath();
+  function isPageEditable() {
+    const filePath = getSourceFilePath();
     if (!filePath) return false;
     
     // Check if path starts with any excluded folder
@@ -137,8 +97,8 @@
   /**
    * Get GitHub edit URL for current page
    */
-  async function getGitHubEditUrl() {
-    const filePath = await getSourceFilePath();
+  function getGitHubEditUrl() {
+    const filePath = getSourceFilePath();
     if (!filePath) return null;
     
     return `https://github.com/${CONFIG.githubRepo}/edit/${CONFIG.githubBranch}/${filePath}`;
@@ -177,16 +137,15 @@
   /**
    * Create edit button UI
    */
-  async function createEditButtons() {
-    const editable = await isPageEditable();
-    if (!editable) {
+  function createEditButtons() {
+    if (!isPageEditable()) {
       return;
     }
 
     const container = document.querySelector('.md-content__inner');
     if (!container) return;
 
-    const editUrl = await getGitHubEditUrl();
+    const editUrl = getGitHubEditUrl();
 
     // Create button container
     const buttonContainer = document.createElement('div');
@@ -225,7 +184,7 @@
   /**
    * Show edit modal for anonymous suggestions
    */
-  async function showEditModal() {
+  function showEditModal() {
     // Check rate limit
     const waitMinutes = checkRateLimit();
     if (waitMinutes > 0) {
@@ -234,7 +193,7 @@
     }
 
     // Fetch current content
-    const filePath = await getSourceFilePath();
+    const filePath = getSourceFilePath();
     
     // Create modal
     const modal = document.createElement('div');

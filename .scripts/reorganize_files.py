@@ -15,11 +15,9 @@ import json
 
 
 def slugify(text):
-    """Convert text to URL-friendly slug."""
+    """Convert text to URL-friendly slug while preserving capitalization."""
     # Remove file extension if present
     text = text.replace('.md', '')
-    # Convert to lowercase
-    text = text.lower()
     # Replace spaces and underscores with hyphens
     text = re.sub(r'[\s_]+', '-', text)
     # Remove any characters that aren't alphanumeric, hyphens, or forward slashes
@@ -128,7 +126,6 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
     Also creates a mapping file for wikilink conversion.
     """
     mapping = {}
-    url_to_source_mapping = {}  # Maps URL paths to original source paths
     pages_count = 0
     
     # Walk through source directory
@@ -137,9 +134,6 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             # Get original path relative to working directory
             original_path = os.path.join(root, filename)
             relative_original = os.path.relpath(original_path, '.')
-            
-            # Get path relative to source directory (for URL mapping)
-            relative_to_source = os.path.relpath(original_path, source_dir)
             
             # Handle .pages files separately - copy them to corresponding dirs
             if filename == '.pages':
@@ -227,24 +221,13 @@ def copy_and_reorganize(source_dir, dest_dir, mapping_file):
             new_name = os.path.splitext(os.path.basename(new_path))[0]
             mapping[original_name] = new_relative_path
             
-            # Store reverse mapping (URL path -> original source path)
-            # Remove .md extension from new_relative_path for URL matching
-            url_path = new_relative_path.replace('.md', '')
-            url_to_source_mapping[url_path] = relative_to_source
-            
             print(f"Copied: {relative_original} -> {new_relative_path}")
     
     # Save mapping to file
     with open(mapping_file, 'w', encoding='utf-8') as f:
         json.dump(mapping, f, indent=2)
     
-    # Save reverse mapping (URL to source) for frontend use
-    reverse_mapping_file = os.path.join(dest_dir, 'url-to-source-mapping.json')
-    with open(reverse_mapping_file, 'w', encoding='utf-8') as f:
-        json.dump(url_to_source_mapping, f, indent=2)
-    
     print(f"\nMapping saved to {mapping_file}")
-    print(f"URL to source mapping saved to {reverse_mapping_file}")
     print(f"Total files reorganized: {len(mapping)}")
     if pages_count > 0:
         print(f"Total .pages files copied: {pages_count}")
