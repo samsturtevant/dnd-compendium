@@ -1,8 +1,8 @@
 <block>
+![[Pasted image 20251113102132.png]]
 Race: Aasimar
 Class: Bard (College of Lore)
 Former Affiliations: [[The Party]]
-Former Residence: [[Peapod Public House]]
 </block>
 
 Lucian Lovelyre was an Aasimar bard who became a prolific musician. He often wrote songs about his sexual conquests and subsequent heartbreak. At the time of his death, he had a residency at the [[Peapod Public House]].
