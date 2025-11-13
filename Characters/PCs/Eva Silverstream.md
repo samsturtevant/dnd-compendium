@@ -5,6 +5,6 @@ Class: Tempest Cleric (Selûne)
 Affiliations: [[The Party]] (Former)
 </block>
 
-Previous member of [[The Party]]. Was last seen in the [[Underground Chamber]] before the illusory wall was sealed.
+Eva Silverstream is a strong, independent Selûnite devotee. She was last seen by The Party in the [[Underground Chamber]] before the illusory wall was sealed.
 
 #wiki 
