@@ -1,5 +1,5 @@
 <block>
-![[Pasted image 20251113102132.png]]
+![[lucian.png]]
 Race: Aasimar
 Class: Bard (College of Lore)
 Former Affiliations: [[The Party]]
