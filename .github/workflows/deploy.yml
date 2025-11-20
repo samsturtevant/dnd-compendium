@@ -78,14 +78,7 @@ jobs:
           done
 
           # Copy .pages files for navigation customization
-          find . -maxdepth 5 -type f -name ".pages" \
-            -not -path "./.git/*" \
-            -not -path "./.github/*" \
-            -not -path "./.scripts/*" \
-            -not -path "./site/*" \
-            -not -path "./.site_content*/*" \
-            -exec cp --parents {} .site_content_temp/ \;
-          echo "Copied .pages files"
+          # (Disabled) .pages copy
 
           # Copy Assets directory if it exists
           if [ -d Assets ]; then

@@ -8,8 +8,6 @@ site_description: D&D Compendium
 theme:
   name: material
   features:
-    - navigation.indexes
-    - navigation.top
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -32,6 +30,7 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+  show_sidebar: false
   # Custom color settings
   # custom_dir: .overrides
 
