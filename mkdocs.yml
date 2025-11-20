@@ -35,11 +35,6 @@ theme:
   # Custom color settings
   # custom_dir: .overrides
 
-nav:
- # this will generate the nav dynamically
-  - ... 
-# The index.md file is the home page from the `docs` folder
-
 extra_css:
   - stylesheets/extra.css
 
