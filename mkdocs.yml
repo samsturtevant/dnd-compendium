@@ -56,11 +56,12 @@ markdown_extensions:
   - pymdownx.extra
   - attr_list
   - md_in_html
-  - toc:
-      permalink: false
-      baselevel: 1
-      toc_depth: 3
-      separator: "-"
+  # - toc:
+  #     baselevel: 2
+  #     toc_depth: 3
+  #     separator: "-"
+  #     marker: ""
+  #     title: "Contents"
   - def_list
   - pymdownx.details
   - pymdownx.critic
